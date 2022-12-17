@@ -1,63 +1,14 @@
-@font-face {
-	font-family: 'Inter-Black';
-	src: url('../fonts/Inter-Black.eot');
-	src: url('Inter-Black.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/Inter-Black.woff2') format('woff2'),
-		url('../Inter-Black.woff') format('woff');
-	font-weight: 900;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
+
+body {
+	font-family: Inter;
 	font-style: normal;
+	font-weight: 400;
+	margin: 0px;
+	background-color: #DFE9DA;
 }
 
-@font-face {
-	font-family: 'Inter-Bold';
-	src: url('../fonts/Inter-Bold.eot');
-	src: url('Inter-Bold.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/Inter-Bold.woff2') format('woff2'),
-		url('../fonts/Inter-Bold.woff') format('woff');
-	font-weight: bold;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Inter-Medium';
-	src: url('../fonts/Inter-Medium.eot');
-	src: url('Inter-Medium.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/Inter-Medium.woff2') format('woff2'),
-		url('../fonts/Inter-Medium.woff') format('woff');
-	font-weight: 500;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Inter-Regular';
-	src: url('../fonts/Inter-Regular.eot');
-	src: url('Inter-Regular.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/Inter-Regular.woff2') format('woff2'),
-		url('../fonts/Inter-Regular.woff2') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Inter-ExtraBold';
-	src: url('../fonts/Inter-ExtraBold.eot');
-	src: url('Inter-ExtraBold.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/Inter-ExtraBold.woff2') format('woff2'),
-		url('../fonts/Inter-Medium.woff') format('woff');
-	font-weight: bold;
-	font-style: normal;
-}
-
-
-body{
-font-family: Inter-Regular;
-font-style: normal;
-font-weight: 400;
-margin: 0px;
-background-color: #DFE9DA;
-}
-
-.link{
+.link {
 	text-decoration: none;
 	font-size: 20px;
 	line-height: 24px;
@@ -66,48 +17,61 @@ background-color: #DFE9DA;
 	color: #2D2D1F;
 }
 
-.header{
-	background-color: #E2E1DD;
+.header {
 	position: sticky;
 }
-.conteiner{
-	max-width: 1512px;
-	margin: 0px auto;
-	padding: 51px 0px 22px 0px;
+
+.conteiner {
+	max-width: 1516px;
+	padding: 33px 0px 22px 0px;
+	background-color: #E2E1DD;
 }
 
-.header__wrapper{
-	max-width:1276.5px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 14px 0px;
+.header__wrapper {
+	margin: 0px auto;
+	max-width: 1276.5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 14px 0px;
 }
 
 .header__logo {
-font-weight: 400;
-font-size: 39.16px;
-line-height: 47px;
-text-transform: uppercase;
-color: #2D2D1F;
+	font-weight: 400;
+	font-size: 39.16px;
+	line-height: 47px;
+	text-transform: uppercase;
+	color: #2D2D1F;
+}
+
+.header__logo span {
+	font-weight: 700;
+	font-size: 39.16px;
+	line-height: 47px;
+	text-transform: uppercase;
+	color: #2D2D1F;
 }
 
 .nav {
 	display: flex;
-	gap: 31.5px;
+	gap: 21.5px;
 }
 
-.nav__wrapper{
+.nav__wrapper {
 	display: flex;
-	gap: 108px;
+	gap: 106px;
+}
+
+.header__icon {
+	display: flex;
+	gap: 17.34px;
 }
 
 .header__buttom {
 	border: none;
 	background-color: #E2E1DD;
-	padding: 0px;
 }
 
 .header__buttom:last-child {
-	margin-left: 35.17px;
+	margin-right: 8px;
 }
