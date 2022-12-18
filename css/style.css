@@ -18,11 +18,13 @@ body {
 }
 
 .header {
-	position: sticky;
+	position:fixed;
+	left: 0px;
+	right: 0px;
 }
 
-.conteiner {
-	max-width: 1516px;
+.header__conteiner {
+	max-width: 1512px;
 	padding: 33px 0px 22px 0px;
 	background-color: #E2E1DD;
 }
@@ -74,4 +76,86 @@ body {
 
 .header__buttom:last-child {
 	margin-right: 8px;
+}
+
+.conteiner {
+	max-width: 1512px;
+}
+
+.section-top__image{
+	height: 980px;
+	background-image: url(../image/Untitled\ design.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.section-top__wrapper {
+	max-width: 1252px;
+	margin: 0px auto;
+	padding-top: 236px;
+}
+.section-top__content {
+	display: flex;
+	gap: 187px;
+}
+.section-top__item {
+}
+.section-top__title {
+	margin: 0px;
+	font-weight: 700;
+font-size: 48px;
+line-height: 58px;
+letter-spacing: 0.02em;
+text-transform: capitalize;
+color: #2D2D1F;
+}
+
+.search {
+	margin-top: 35px;
+	position: relative;
+}
+
+.search__input {
+	box-sizing: border-box;
+	width: 463px;
+	height: 42px;
+	border:  1px solid #2D2D1F;
+	border-radius: 29px;
+	-webkit-border-radius: 29px;
+	-moz-border-radius: 29px;
+	-ms-border-radius: 29px;
+	-o-border-radius: 29px;
+	font-size: 16px;
+line-height: 130.02%;
+letter-spacing: 0.015em;
+text-transform: capitalize;
+color: #000000;
+padding: 11px 0px 10px 21px;
+}
+
+.search__button {
+	width: 153px;
+height: 42px;
+position: absolute;
+right: 35px;
+background: #2D2D1F;
+border: 1px solid #2D2D1F;
+border-radius: 29px;
+
+font-size: 16px;
+line-height: 130.02%;
+letter-spacing: 0.015em;
+text-transform: capitalize;
+color: #FFFFFF;
+padding: 0px;
+}
+
+.section-top__text {
+	width: 567px;
+font-size: 24px;
+line-height: 150%;
+letter-spacing: 0.05em;
+text-transform: capitalize;
+color: #2D2D1F;
+padding-top: 7px;
 }
