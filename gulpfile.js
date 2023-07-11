@@ -17,6 +17,8 @@
 
 
 
+
+
  const configFTP = {
 	host: '', // Адрес FTP сервера
 	user: '', // Имя пользователя
@@ -169,7 +171,7 @@
 
 
 	 function fonstStyle() {
-		let fontsFile = `app/scss/fonts.scss`;
+		let fontsFile = `app/scss/_fonts.scss`;
 		// Проверяем существуют ли файлы шрифтов
 		fs.readdir('app/fonts/', function (err, fontsFiles) {
 			if (fontsFiles) {

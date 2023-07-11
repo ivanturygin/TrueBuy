@@ -1,0 +1,49 @@
+body {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 400;
+	color: #000000;
+	background-color: $body-color;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100%;
+}
+
+.conteiner {
+	max-width: 1290px;
+	margin: 0 auto;
+}
+
+.button {
+
+	&__btn {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 130.02%;
+		letter-spacing: 0.015em;
+		text-transform: capitalize;
+		color: #E1E1BB;
+		background-color: #2D2D1F;
+		border: 1px solid #E1E1BB;
+		border-radius: 50px;
+	}
+
+	&:hover {
+		.button__btn {
+			background-color: #E1E1BB;
+			color: #2D2D1F;
+			transition: background-color 0.3s;
+		}
+	}
+
+	&:active {
+		.button__btn {
+			background-color: #2D2D1F;
+			color: #E1E1BB;
+		}
+	}
+}
