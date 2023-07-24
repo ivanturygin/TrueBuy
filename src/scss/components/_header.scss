@@ -1,0 +1,63 @@
+.header {
+	position: sticky;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	z-index: 2;
+	background-color: $header-color;
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 45px 6.75px 34px 6.75px;
+	}
+
+	&__logo {
+		font-weight: 400;
+		font-size: 39.16px;
+		line-height: 47px;
+		text-transform: uppercase;
+		color: #2D2D1F;
+	}
+
+	&__logo span {
+		font-weight: 700;
+		font-size: 39.16px;
+		line-height: 47px;
+		text-transform: uppercase;
+		color: #2D2D1F;
+	}
+
+	&__icon {
+		display: flex;
+		gap: 30px;
+		padding-bottom: 11px;
+	}
+
+	&__buttom {
+		border: none;
+		background-color: #E2E1DD;
+	}
+
+}
+
+.nav {
+	display: flex;
+
+	&__wrapper {
+		display: flex;
+		gap: 80px;
+		padding-bottom: 11px;
+		padding-left: 380px;
+	}
+
+	&__link {
+		font-size: 20px;
+		line-height: 24px;
+		letter-spacing: 0.02em;
+		text-transform: capitalize;
+		color: #2D2D1F;
+		letter-spacing: inherit;
+	}
+}
