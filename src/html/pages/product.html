@@ -1,0 +1,43 @@
+<div class="card__image">
+
+	<div class="slider">
+		<div class="slider__wrapper">
+			<div class="slider__nav">
+
+				<div class="slider__nav-item nav-prev">
+
+					<img class="slider__nav-img" src="../../img/icon/slider_nav.png" alt=""></div>
+
+				<div class="slider__nav-item nav-next">
+					<a href="#"> </a>
+					<img class="slider__nav-img" src="../../img/icon/slider_nav.png" alt="#"></div>
+			</div>
+			<div class="slider__inner">
+				<div class="slider__item">
+					<img class="slider__img" src=${this.img} alt="диван Velvet">
+				</div>
+
+				<div class="slider__item">
+					<img class="slider__img" src="${this.img}" alt="диван Velvet">
+				</div>
+
+				<div class="slider__item">
+					<img class="slider__img" src="../../img/product/4442540.jpg" alt="диван Velvet">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="card__content">
+	<div class="card__content-text">
+		<a class="card__title" href="${this.url}">${this.productName}</a>
+		<div class="card__price">
+			${this.price} <span class="card__old-price"> ${this.oldPrice}</span>
+			<div class="sale">
+				<p class="sale__text">${this.sale}</p>
+			</div>
+		</div>
+	</div>
+	<div class="button card__button"><button class="button__btn card__button-btn"> В корзину </button>
+	</div>
+</div>

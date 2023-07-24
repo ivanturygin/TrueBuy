@@ -1,0 +1,33 @@
+.footer {
+	background-color: $header-color;
+
+	&__inner {
+		display: flex;
+		justify-content: space-between;
+		padding: 90px 0px 80px 0px;
+	}
+
+	&__content {
+		width: 255px;
+	}
+
+
+	&__title {
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 130.02%;
+		letter-spacing: 0.02em;
+		text-transform: capitalize;
+		color: #2D2D1F;
+		margin-bottom: 24px;
+	}
+
+	&__link {
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 200%;
+		letter-spacing: 0.05em;
+		text-transform: capitalize;
+		color: #2D2D1F;
+	}
+}

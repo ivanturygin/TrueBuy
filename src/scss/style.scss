@@ -1,0 +1,20 @@
+// Base
+
+@import"./base/reset";  // обнуляющие стили
+
+@import"./base/vars";  // переменные
+
+@import"./base/fonts"; // шрифты
+
+@import"./base/base";  // глобальные стили
+
+// Components
+
+@import"./components/header";
+
+@import"./components/footer";
+
+
+// Pages
+
+@import"./pages/main.scss";
