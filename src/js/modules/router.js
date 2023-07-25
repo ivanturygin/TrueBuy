@@ -3,19 +3,19 @@ const urlPageTitle = '';
 const routes = {
 
 	404: {
-		template: './views/404.html',
+		template: '',
 		title: '404 ' + urlPageTitle,
 		description: 'Page not found'
 	},
 
 	main: {
-		template: './views/main.html',
+		template: './pages/main.html',
 		title: 'Home ' + urlPageTitle,
 		description: 'This is the homepage'
 	},
 
 	product: {
-		template: './views/card.html',
+		template: '',
 		title: 'Product ' + urlPageTitle,
 		description: 'This is the productpage'
 	},
@@ -37,6 +37,8 @@ const handleLocation = async () => {
 	const html = await fetch(route.template).then((data) => data.text());
 
 	const parent = document.querySelector('.content');
+
+	console.log(html)
 
 	parent.innerHTML = html;
 
