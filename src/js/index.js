@@ -2,12 +2,13 @@ import {handleLocation} from "./modules/router";
 
 import slider from "./modules/slider";
 
+import cards from "./modules/productCards";
+
 document.addEventListener("DOMContentLoaded", function () {
 
 	window.addEventListener('hashchange', handleLocation);
 
 	handleLocation();
-
 
 	slider({
 

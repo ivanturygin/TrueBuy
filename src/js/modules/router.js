@@ -15,7 +15,7 @@ const routes = {
 	},
 
 	product: {
-		template: '',
+		template: './pages/product.html',
 		title: 'Product ' + urlPageTitle,
 		description: 'This is the productpage'
 	},
@@ -38,8 +38,6 @@ const handleLocation = async () => {
 
 	const parent = document.querySelector('.content');
 
-	console.log(html)
-
 	parent.innerHTML = html;
 
 	document.title = route.title;
@@ -49,6 +47,7 @@ const handleLocation = async () => {
 
 	cards(parent, html);
 
-};
+}
+
 
 export {handleLocation};
