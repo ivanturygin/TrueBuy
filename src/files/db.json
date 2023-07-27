@@ -1,0 +1,25 @@
+{
+	"route": [
+		{
+	"404": {
+			"template": "",
+			"title": "404  + urlPageTitle",
+			"description": "Page not found"
+		}
+	},
+	{
+		"main": {
+			"template": "./pages/main.html",
+			"title": "Home + urlPageTitle",
+			"description": "This is the homepage"
+		}
+	},
+	{
+		"product": {
+			"template": "../files/db.json",
+			"title": "Product + urlPageTitle",
+			"description": ". / pages / product.html"
+		}
+	}
+	]
+}

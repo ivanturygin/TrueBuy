@@ -1,3 +1,5 @@
+import { server } from "../services/server";
+
 const urlPageTitle = '';
 
 const routes = {
@@ -17,12 +19,12 @@ const routes = {
 	product: {
 		template: './pages/product.html',
 		title: 'Product ' + urlPageTitle,
-		description: 'This is the productpage'
+		description: '. / pages / product.html '
 	},
 
 };
 
-const handleLocation = async () => {
+const handleLocation = () => {
 
 	let path = window.location.hash.replace('#', '');
 
@@ -34,11 +36,12 @@ const handleLocation = async () => {
 
 	const route = routes[path] || routes[404];
 
-	const html = await fetch(route.template).then((data) => data.text());
+	server(route.template).then((html) => {
 
-	const parent = document.querySelector('.content');
+		const parent = document.querySelector('.content');
 
-	parent.innerHTML = html;
+		parent.innerHTML = html;
+	});
 
 	document.title = route.title;
 

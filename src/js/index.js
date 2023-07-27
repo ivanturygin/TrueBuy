@@ -4,6 +4,9 @@ import slider from "./modules/slider";
 
 import cards from "./modules/productCards";
 
+import {view} from "./services/server";
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
 	window.addEventListener('hashchange', handleLocation);
