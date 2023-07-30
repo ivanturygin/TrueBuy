@@ -1,4 +1,4 @@
-import { server } from "../services/server";
+import cards from "./cards";
 
 const urlPageTitle = '';
 
@@ -19,12 +19,12 @@ const routes = {
 	product: {
 		template: './pages/product.html',
 		title: 'Product ' + urlPageTitle,
-		description: '. / pages / product.html '
+		description: 'This is the homepage'
 	},
 
 };
 
-const handleLocation = () => {
+const router = async () => {
 
 	let path = window.location.hash.replace('#', '');
 
@@ -36,21 +36,22 @@ const handleLocation = () => {
 
 	const route = routes[path] || routes[404];
 
-	server(route.template).then((html) => {
+	const html = await fetch(route.template).then((data) => data.text());
 
-		const parent = document.querySelector('.content');
+	const parent = document.querySelector('.content');
 
-		parent.innerHTML = html;
-	});
+	parent.innerHTML = html;
 
 	document.title = route.title;
 
 	document.querySelector('meta[name = "description"]')
 		.setAttribute('content', route.description);
 
-	cards(parent, html);
+		
+
+
+cards('.card')
 
 }
 
-
-export {handleLocation};
+export {router};

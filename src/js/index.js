@@ -1,19 +1,13 @@
-import {handleLocation} from "./modules/router";
-
-import slider from "./modules/slider";
-
-import cards from "./modules/productCards";
-
-import {view} from "./services/server";
-
+import {router} from "./modules/router";
+import cards from "./modules/cards"
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	window.addEventListener('hashchange', handleLocation);
+	window.addEventListener('hashchange',router);
 
-	handleLocation();
+	router();
 
-	slider({
+/*	slider({
 
 		content: '.card__item',
 
@@ -35,6 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		nav: '.slider__nav'
 
-	});
+	});*/
 
 });
