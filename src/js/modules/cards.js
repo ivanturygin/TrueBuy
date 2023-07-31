@@ -1,3 +1,5 @@
+import slider from "./slider";
+
 const cardsProduct = [
 
 	{
@@ -8,8 +10,6 @@ const cardsProduct = [
 		'price': '46990 ₽',
 
 	   'oldPrice': '97990 ₽',
-
-     
 
 		'url': '#product/velvet'
 	},
@@ -62,6 +62,7 @@ function cards(parent) {
 		render() {
 
 			const element = document.createElement('div');
+
 			element.classList.add('card__item');
 
 			element.innerHTML = `<div class="card__image">
@@ -110,17 +111,7 @@ function cards(parent) {
 
 			this.parent.append(element);
 
-			//img = document.querySelector('.slider__img')
-
-			this.slider()
-
 		}
-
-
-		slider() {
-			this.abc;
-		}
-
 	};
 
 	const content = () => {
@@ -133,10 +124,10 @@ function cards(parent) {
 			url
 		}) => {
 
-
 			new ProductCard(img, productName, price, oldPrice, sale, url, parent).render();
 
 		});
+
 
 	};
 
@@ -167,7 +158,8 @@ function cards(parent) {
 	}
 
 	offSale('.card__item ', '.sale', '.sale__text');
-
+	
+	
 }
 
 export default cards;

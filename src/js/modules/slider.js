@@ -1,21 +1,18 @@
 
-function slider({content,conteiner,slides,slider,prev,next,wrapper,field,width,nav}) {
-
-	// slider
-
 	function slider() {
 
-		const content = document.querySelector('.card__item'),
-			conteiner = content.querySelector('.slider__item'),
-			slides = content.querySelectorAll('.slider__item'),
-			slider = content.querySelector('.product'),
-			prev = content.querySelector('.nav-prev'),
-			next = content.querySelector('.nav-next'),
-			wrapper = content.querySelector('.slider__wrapper'),
-			field = content.querySelector('.slider__inner'),
+		const content = document.querySelector(content),
+			conteiner = content.querySelector(conteiner),
+			slides = content.querySelectorAll(slides),
+			slider = content.querySelector(slider),
+			prev = content.querySelector(rev),
+			next = content.querySelector(next),
+			wrapper = content.querySelector(wrapper),
+			field = content.querySelector(field),
 			width = window.getComputedStyle(wrapper).width,
-			nav = content.querySelector('.slider__nav');
+			nav = content.querySelector(nav);
 
+			
 		let slideIndex = 1;
 		let offset = 0;
 
@@ -113,7 +110,5 @@ function slider({content,conteiner,slides,slider,prev,next,wrapper,field,width,n
 		};
 
 	};
-
-};
 
 export default slider;

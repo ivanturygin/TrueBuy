@@ -1,5 +1,4 @@
 import {router} from "./modules/router";
-import cards from "./modules/cards"
 
 document.addEventListener("DOMContentLoaded", function () {
 

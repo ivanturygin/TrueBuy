@@ -47,11 +47,8 @@ const router = async () => {
 	document.querySelector('meta[name = "description"]')
 		.setAttribute('content', route.description);
 
-		
-
-
 cards('.card')
 
-}
+};
 
 export {router};
