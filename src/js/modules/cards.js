@@ -48,7 +48,7 @@ function cards(parent) {
 
 	class ProductCard {
 
-		constructor(img, productName, price, oldPrice, sale, url, parent) {
+		constructor(img, productName, price, oldPrice, sale, url, parent, slider) {
 			this.img = img;
 			this.productName = productName;
 			this.price = price;
@@ -56,6 +56,7 @@ function cards(parent) {
 			this.sale = sale;
 			this.url = url;
 			this.parent = document.querySelector(parent);
+			this.slider = slider;
 		}
 
 
@@ -111,7 +112,10 @@ function cards(parent) {
 
 			this.parent.append(element);
 
+			this.slider(this.parent);
+
 		}
+
 	};
 
 	const content = () => {
@@ -124,10 +128,9 @@ function cards(parent) {
 			url
 		}) => {
 
-			new ProductCard(img, productName, price, oldPrice, sale, url, parent).render();
+			new ProductCard(img, productName, price, oldPrice, sale, url, parent, slider).render();
 
 		});
-
 
 	};
 
