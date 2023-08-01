@@ -96,6 +96,7 @@ function cards(parent) {
 		</div>
 	</div>
 </div>
+
 <div class="card__content">
 	<div class="card__content-text">
 		<a class="card__title" href="${this.url}">${this.productName}</a>
@@ -106,7 +107,9 @@ function cards(parent) {
 			</div>
 		</div>
 	</div>
+
 	<div class="button card__button"><button class="button__btn card__button-btn"> В корзину </button>
+
 	</div>
 </div>`;
 
@@ -134,8 +137,6 @@ function cards(parent) {
 
 	};
 
-		content();
-
 	const offSale = (parent, saleElement, saleContent) => {
 
 		const elementParent = document.querySelectorAll(parent);
@@ -160,9 +161,10 @@ function cards(parent) {
 		})
 	}
 
-	offSale('.card__item ', '.sale', '.sale__text');
+	content();
+
+	offSale('.card__item', '.sale', '.sale__text');
 	
-	
-}
+};
 
 export default cards;

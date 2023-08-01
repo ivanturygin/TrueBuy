@@ -1,7 +1,5 @@
 .header {
 	position: sticky;
-	left: 0px;
-	right: 0px;
 	top: 0px;
 	z-index: 2;
 	background-color: $header-color;
@@ -60,4 +58,12 @@
 		color: #2D2D1F;
 		letter-spacing: inherit;
 	}
+}
+
+@media (max-width:1499px) {
+
+	.nav__wrapper {
+		padding-left: 200px;
+	}
+
 }

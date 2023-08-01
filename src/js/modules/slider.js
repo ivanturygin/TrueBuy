@@ -1,7 +1,6 @@
 
 	function slider(parent) {
 
-
 		const contents = parent.querySelectorAll('.card__item');
 
 		contents.forEach(contents => {
@@ -23,7 +22,7 @@
 
 			const indicators = document.createElement('ol');
 
-			let dots = [];
+			const dots = [];
 
 			indicators.classList.add('slider__indicator');
 
@@ -67,7 +66,7 @@
 					slideIndex++;
 				};
 
-				dots.forEach(dot => dot.style.opacity = '.5');
+				dots.forEach(dot => dot.style.opacity = '.1');
 				dots[slideIndex - 1].style.opacity = 1;
 
 			})
@@ -88,7 +87,7 @@
 					slideIndex--;
 				};
 
-				dots.forEach(dot => dot.style.opacity = '.5');
+				dots.forEach(dot => dot.style.opacity = '.1');
 				dots[slideIndex - 1].style.opacity = 1;
 
 			})
@@ -115,7 +114,6 @@
 			};
 			
 		})
-		
 
 	};
 
