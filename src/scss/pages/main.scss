@@ -102,11 +102,20 @@
 	}
 
 	&__item {
-		position: relative;
 		width: 228.71px;
 		height: 173.24px;
 		background-color: #EEEDEA;
 		border-radius: 20px;
+	}
+
+	&__img{
+		width: 100%;
+		position: relative;
+	}
+
+	&__img-inner{
+		width: 220px;
+		margin: 0 auto;
 	}
 
 	&__text {
@@ -125,26 +134,27 @@
 
 	&__chair {
 		position: absolute;
+		top: 0px;
 		bottom: 98.14px;
 		right: -15.36px;
 	}
 
 	&__cabinet {
 		position: absolute;
-		bottom: 55px;
-		right: 42.11px;
+		top: -81px;
+		right: 40.11px;
 	}
 
 	&__lamp {
 		position: absolute;
-		bottom: 61px;
-		right: 86.16px;
+		top: -71px;
+		right: 76.16px;
 	}
 
 	&__table {
 		position: absolute;
-		bottom: 84px;
-		right: 16.2px;
+		top: -36px;
+		right: -2.8px;
 	}
 
 }

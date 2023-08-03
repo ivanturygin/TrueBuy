@@ -1,11 +1,11 @@
 
 html,body {
-	width: 100vw;
 	font-family: Inter;
 	font-style: normal;
 	font-weight: 400;
-	color: #000000;
+	color: #717171;
 	background-color: $body-color;
+	overflow-x: hidden;
 }
 
 .wrapper {
