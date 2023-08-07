@@ -42,6 +42,18 @@ const cardsProduct = [
 		'url': '#product/emerald'
 	},
 
+	{
+		'img': "../../img/product/4442541.jpg",
+
+		'productName': 'Диван Velvet',
+
+		'price': '46990 ₽',
+
+		'oldPrice': '97990 ₽',
+
+		'url': '#product/velvet'
+	},
+
 ];
 
 function cards(parent) {

@@ -44,6 +44,7 @@
 }
 
 .search {
+	max-width: 446px;
 	margin-top: 40px;
 	position: relative;
 
@@ -66,7 +67,8 @@
 		width: 153px;
 		height: 42px;
 		position: absolute;
-		right: 45px;
+		top: 0px;
+		right: -3px;
 		background: #2D2D1F;
 		border: 1px solid #2D2D1F;
 		border-radius: 29px;
@@ -181,7 +183,7 @@
 	}
 
 	&__content-img {
-		width: 553px;
+		width: 100%;
 	}
 
 	&__list {
