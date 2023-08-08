@@ -3,6 +3,8 @@ import slider from "./slider";
 const cardsProduct = [
 
 	{
+		'id': '1r5',
+
 		'img': "../../img/product/4442541.jpg",
 
 		'productName': 'Диван Velvet',
@@ -15,6 +17,9 @@ const cardsProduct = [
 	},
 
 	{
+
+		'id': '2e3',
+
 		'img': "../../img/product/4340118.jpg",
 
 		'productName': 'Диван Navy Blue',
@@ -29,6 +34,8 @@ const cardsProduct = [
 	},
 
 	{
+		'id': '3s3',
+
 		'img': "../../img/product/4200315.jpg",
 
 		'productName': 'Кресло Emerald',
@@ -43,6 +50,8 @@ const cardsProduct = [
 	},
 
 	{
+
+		'id': '4s2',
 		'img': "../../img/product/4442541.jpg",
 
 		'productName': 'Диван Velvet',
@@ -111,7 +120,7 @@ function cards(parent) {
 
 <div class="card__content">
 	<div class="card__content-text">
-		<a class="card__title" href="${this.url}">${this.productName}</a>
+		<a class="card__title" href="#productCard">${this.productName}</a>
 		<div class="card__price">
 			${this.price} <span class="card__old-price"> ${this.oldPrice}</span>
 			<div class="sale">

@@ -22,6 +22,12 @@ const routes = {
 		description: 'This is the homepage'
 	},
 
+	productCard:{
+		template: './pages/product-card.html',
+			title: 'Product ' + urlPageTitle,
+			description: 'This is the homepage'
+	}
+
 };
 
 const router = async () => {
