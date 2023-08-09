@@ -21,7 +21,7 @@
 		}
 
 		&__rewievs{
-			margin-top: 8px;
+			margin-top: 10px;
 		}
 
 		&__price{
@@ -32,15 +32,23 @@
 			letter-spacing: 0.05em;
 			text-transform: capitalize;
 			color: #2d2d1f;
-			margin-top: 15px;
+			margin-top: 25px;
 		}
 
 		&__label{
+			position: relative;
 			width: 50px;
 			height: 22px;
 			background-image: url('./../../img/icon/sale.svg');
 			background-position: center;
 			background-repeat: no-repeat;
+		}
+
+		&__label-text{
+			position: absolute;
+			top: 3px;
+			right: 1px;
+			font-size: 16px;
 		}
 
 		&__color{
@@ -63,13 +71,19 @@
 		}
 
 		&__feature{
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
 			margin-top: 15px;
-			background-image:url('./../../img/icon/add.svg');
-			background-repeat:no-repeat;
-			background-size: contain;
 		}
 
-		&__feature a {
+		&__feature-item{
+         background-image:url('./../../img/icon/add.svg');
+         background-repeat:no-repeat;
+         background-size: contain;
+		}
+
+		&__feature span {
 			margin-left: 30px;
 		}
 
