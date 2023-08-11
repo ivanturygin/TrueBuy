@@ -1,0 +1,24 @@
+.characteristics{
+
+&__inner{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 15px 0px;
+}
+	
+&__title{
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 700;
+	color: #2d2d1f;
+}
+
+&__text{
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 500;
+	color: #2d2d1f;
+	margin-left: 10px;
+}
+}

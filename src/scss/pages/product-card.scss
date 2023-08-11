@@ -2,6 +2,11 @@
 
 	&__inner{
 		display: flex;
+		flex-direction: column;
+	}
+
+	&__top{
+		display: flex;
 		gap: 50px;
 		margin-top: 20px;
 	}
@@ -28,7 +33,7 @@
 			display: flex;
 			gap: 10px;
 			font-weight: 400;
-			font-size: 19px;
+			font-size: 24px;
 			letter-spacing: 0.05em;
 			text-transform: capitalize;
 			color: #2d2d1f;
@@ -74,7 +79,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
-			margin-top: 15px;
+			margin-top: 25px;
 		}
 
 		&__feature-item{
@@ -83,12 +88,12 @@
          background-size: contain;
 		}
 
-		&__feature span {
+		&__feature-text {
 			margin-left: 30px;
 		}
 
 		&__btn{
-			margin-top: 20px;
+			margin: 35px 0px;
 			max-width: 376px;
 		}
 
