@@ -18,14 +18,20 @@ const routes = {
 
 	product: {
 		template: './pages/product.html',
-		title: 'Product ' + urlPageTitle,
+		title: 'Каталог ' + urlPageTitle,
 		description: 'This is the homepage'
 	},
 
 	productCard:{
 		template: './pages/product-card.html',
-			title: 'Product ' + urlPageTitle,
+			title: 'Товары' + urlPageTitle,
 			description: 'This is the homepage'
+	},
+
+	cart:{
+		template: './pages/cart.html',
+		title: 'Корзина ' + urlPageTitle,
+		description: 'This is the homepage'
 	}
 
 };

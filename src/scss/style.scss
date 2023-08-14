@@ -16,6 +16,8 @@
 
 @import"./components/characteristics";
 
+@import"./components/reviews.scss";
+
 
 // Pages
 
@@ -24,6 +26,8 @@
 @import"./pages/product.scss";
 
 @import"./pages/product-card.scss";
+
+@import"./pages/cart.scss";
 
 // Media queries
 
