@@ -1,5 +1,7 @@
 .cart{
 
+background-color:$block-color;
+
 	__inner{
 		display: flex;
 		flex-direction: column;
@@ -7,7 +9,116 @@
 
 	&__top{
 		display: flex;
+		gap: 40px;
 	}
+
+	&__list{
+		margin-top: 15px;
+		background-color:$body-color;
+	}
+
+	&__item{
+		margin-top: 10px;
+		display: flex;
+		gap: 20px;
+	}
+
+	&__item-image{
+		margin-left: 10px;
+	}
+
+	&__item-image img{
+		width: 180px;
+		height: 119px;
+	}
+
+	&__item-content{
+		position: relative;
+		    font-size: 14px;
+		    line-height: 24px;
+		    font-weight: 500;
+		    color: #2d2d1f;
+		    margin-left: 10px;
+	}
+
+	&__item-title{
+		    font-size: 24px;
+		    line-height: 130.02%;
+		    letter-spacing: 0.02em;
+		    text-transform: capitalize;
+		    color: #2d2d1f;
+			 margin-bottom: 15px;
+	}
+
+	&__item-price{
+		font-weight: 400;
+		font-size: 22px;
+		letter-spacing: 0.05em;
+		text-transform: capitalize;
+	}
+
+
+	&__item-bottom{
+		margin: 20px 10px 20px 0px;
+		display: flex;
+		gap: 250px;
+	}
+
+	&__price{
+		margin-top: 15px;
+		width: 25%;
+
+		font-size: 14px;
+		line-height: 24px;
+		font-weight: 500;
+		color: #2d2d1f;
+	}
+
+	&__price-text{
+		margin-bottom: 10px;
+	}
+
+	&__price-sum{
+		font-size: 30px;
+		line-height: 24px;
+		font-weight: 500;
+		color: #2d2d1f;
+	}
+
+	&__form{
+
+		max-width: 781.6px;
+
+		margin-top: 60px;
+
+		background-color: $body-color;
+	}
+
+}
+
+.caunter{
+	height: 29px;
+	width: 100px;
+	display: flex;
+	border: 1px solid #c4c4c4;
+	border-radius: 4px;
+	text-align: center;
+
+	&__caunt{
+		width: 40%;
+		border: 1px solid #c4c4c4;
+		text-align: center;
+	}
+
+	&__minus{
+		width: 30%;
+	}
+   
+
+	&__plus{
+		width: 30%;
+	}
+
 }
 
 
@@ -16,13 +127,67 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	padding: 15px;
+
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 500;
+	color: #2d2d1f;
+
 
 	&__input{
 		display: flex;
-		gap: 10px;
+		gap: 40px;
 	}
 
+	&__input:nth-child(1) {
+		gap:50px;
+	}
+
+	&__input:nth-child(2) {
+		gap: 18px;
+	}
+
+
 	&__input-text{
+		width: 50%;
 	border: 1px solid black;
+	}
+
+	&__input-inp{
+		width: 100%;
+		padding-left: 8px;
+	}
+
+	&__button{
+		margin-left: 11%;
+	}
+   
+	&__button-btn{
+		width: 192px;
+		height: 42px;
+	}
+}
+
+.close{
+width: 80px;
+height: 12px;
+position: absolute;
+top: 0px;
+left: 460px;
+	cursor: pointer;
+
+	&__inner{
+       display: flex;
+       align-items: center;
+		 gap: 5px;
+	}
+
+	&__img{
+		background-image:url(../../img/icon/4c4e133b64ee82df1023.svg);
+		background-repeat:no-repeat;
+		background-size:contain;
+		height: 12px;
+		width: 12px;
 	}
 }
