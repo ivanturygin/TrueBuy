@@ -32,6 +32,12 @@ const routes = {
 		template: './pages/cart.html',
 		title: 'Корзина ' + urlPageTitle,
 		description: 'This is the homepage'
+	},
+
+	aboutUs: {
+		template: './pages/aboutUs.html',
+		title: 'О нас' + urlPageTitle,
+		description: 'This is the homepage'
 	}
 
 };
