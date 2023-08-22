@@ -69,13 +69,13 @@ function cards(parent) {
 
 	class ProductCard {
 
-		constructor(img, productName, price, oldPrice, sale, url, parent, slider) {
+		constructor(img, productName, price, oldPrice, sale, id, parent, slider) {
 			this.img = img;
 			this.productName = productName;
 			this.price = price;
 			this.oldPrice = oldPrice;
 			this.sale = sale;
-			this.url = url;
+			this.id = id;
 			this.parent = document.querySelector(parent);
 			this.slider = slider;
 		}
@@ -84,6 +84,8 @@ function cards(parent) {
 		render() {
 
 			const element = document.createElement('div');
+
+			element.dataset.id = `${this.id}`;
 
 			element.classList.add('card__item');
 
@@ -129,8 +131,7 @@ function cards(parent) {
 		</div>
 	</div>
 
-	<div class="button card__button"><button class="button__btn card__button-btn"> В корзину </button>
-
+	<div class="button card__button"> <button data-cart class="button__btn card__button-btn"> В корзину </button>
 	</div>
 </div>`;
 
@@ -149,10 +150,10 @@ function cards(parent) {
 			price,
 			oldPrice,
 			sale,
-			url
+			id
 		}) => {
 
-			new ProductCard(img, productName, price, oldPrice, sale, url, parent, slider).render();
+			new ProductCard(img, productName, price, oldPrice, sale, id, parent, slider).render();
 
 		});
 

@@ -1,4 +1,4 @@
-import cards from "./cards";
+import cards from "../modules/cards";
 
 const urlPageTitle = '';
 
