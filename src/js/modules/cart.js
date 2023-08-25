@@ -1,6 +1,6 @@
-import { src } from "gulp";
-
 function cart(){
+
+	let cartStorage = [];
 
 	// counter
 
@@ -46,15 +46,17 @@ window.addEventListener('click', (e) => {
 
 			const productInfo = {
 
-				id: card.dataset.id,
+				id: card.dataset.id
 
-				img: card.querySelector('.slider__img').getAttribute(src),
-
-				title: card.querySelector('.slider__img').innerText,
 			}
+
+			cartStorage.push(productInfo);
+
+      
 		}
 	
 })
+
 
 };
 
