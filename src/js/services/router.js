@@ -1,4 +1,5 @@
 import cards from "../modules/cards";
+import cart from "../modules/cart";
 
 const urlPageTitle = '';
 
@@ -65,7 +66,15 @@ const router = async () => {
 	document.querySelector('meta[name = "description"]')
 		.setAttribute('content', route.description);
 
-cards('.card')
+
+
+		if(route === routes.product){
+			cards('.card');
+		}
+
+		if(route === routes.cart){
+			cart();
+		};
 
 };
 

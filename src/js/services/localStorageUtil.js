@@ -19,18 +19,12 @@
 
 		};
 
-		setProduct(id) {
+		setProduct(data) {
 
 			let products = this.getProduct();
 
-			const index = products.indexOf(id);
-
-			if (index === -1) {
-				products.push(id);
-			} else {
-				products.splice(index, 1)
-			}
-
+				products.push(data);
+			
 			localStorage.setItem(this.keyName, JSON.stringify(products))
 		}
 	};
