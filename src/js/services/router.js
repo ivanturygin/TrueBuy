@@ -1,5 +1,7 @@
 import cards from "../modules/cards";
 import cart from "../modules/cart";
+import {addToLocalStorage} from "../modules/cart";
+import { deleteHendler } from "../modules/cart";
 
 const urlPageTitle = '';
 
@@ -70,10 +72,14 @@ const router = async () => {
 
 		if(route === routes.product){
 			cards('.card');
+			addToLocalStorage();
+
+			console.log('card');
 		}
 
 		if(route === routes.cart){
 			cart();
+			deleteHendler();
 		};
 
 };

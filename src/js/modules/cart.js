@@ -2,10 +2,6 @@ import {LocalStorageUtil} from "../services/localStorageUtil";
 
 function cart(){
 
-	let localStorage = new LocalStorageUtil();
-
-	// counter
-
 	let counter;
 
 window.addEventListener('click', (e) =>{
@@ -39,38 +35,6 @@ window.addEventListener('click', (e) =>{
 });
 
 // cart
-
-window.addEventListener('click', (e) => {
-
-		if (e.target.hasAttribute('data-cart')){
-
-			const card = e.target.closest('.card__item');
-
-			const id = card.getAttribute('data-id'),
-
-			      img = card.querySelector('.slider__img').getAttribute('src'),
-
-					title = card.querySelector('.card__title').textContent,
-
-					price = card.querySelector('.card__old-price').textContent;
-
-					const productInfo = {
-
-						id:id,
-
-						img:img,
-
-						title:title,
-
-						price:price
-
-					};
-
-			localStorage.setProduct(productInfo);
-
-		}
-
-});
 
 
 const renderToCart = () => {
@@ -136,4 +100,76 @@ renderToCart();
 
 };
 
+const getProduct = () => {
+
+	const productLocalStorage = localStorage.getItem('product');
+
+	if (productLocalStorage !== null) {
+
+		return JSON.parse(productLocalStorage);
+
+	}
+
+	return [];
+
+};
+
+const setProduct = (data) => {
+
+	let products = getProduct();
+
+	products.push(data);
+
+	localStorage.setItem('product', JSON.stringify(products))
+};
+
+
+const addToLocalStorage = () => {
+
+	const hendleClick = (e) => {
+
+			if (e.target.hasAttribute('data-cart')) {
+
+				const card = e.target.closest('.card__item');
+
+				const id = card.getAttribute('data-id'),
+
+					img = card.querySelector('.slider__img').getAttribute('src'),
+
+					title = card.querySelector('.card__title').textContent,
+
+					price = card.querySelector('.card__old-price').textContent;
+
+				const productInfo = {
+
+					id: id,
+
+					img: img,
+
+					title: title,
+
+					price: price
+
+				};
+				setProduct(productInfo);
+			};
+	 };
+
+	 window.addEventListener('click', hendleClick);
+
+		};
+
+		 const deleteHendler = () => {
+
+		 	const removeEventHandler = () => {
+
+		 		window.removeEventListener('click', hendleClick);
+		 	}
+
+		 	window.addEventListener('popstate', removeEventHandler);
+
+		 };
+
+
 export default cart;
+export {addToLocalStorage};

@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	router();
 
-		cart();
-
 server('./../files/db.json').then(data => {
 		data.cards.forEach(element => {
 			dataBase = element

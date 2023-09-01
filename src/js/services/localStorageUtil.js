@@ -13,7 +13,7 @@
 
 				return JSON.parse(productLocalStorage);
 
-			}
+			};
 
 			return [];
 

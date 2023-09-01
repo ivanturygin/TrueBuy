@@ -117,6 +117,7 @@ function cards(parent) {
 	}
 
 	offSale('.card__item', '.sale', '.sale__text');
+
 	
 };
 
