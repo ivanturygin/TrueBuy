@@ -1,41 +1,60 @@
-import {LocalStorageUtil} from "../services/localStorageUtil";
+import {setProduct, getProduct} from "../services/localStorageUtil";
 
 function cart(){
 
+	// counter
+
 	let counter;
 
-window.addEventListener('click', (e) =>{
+	const counterHandler = (e) => {
 
-	if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus'){
+		if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus') {
 
 			const counterParent = e.target.closest('.caunter')
 
 			counter = counterParent.querySelector('[data-counter]')
 
 
-			 if (e.target.dataset.action === 'plus') {
+			if (e.target.dataset.action === 'plus') {
 
-			 	counter.value = ++counter.value;
+				counter.value = ++counter.value;
 
-			 };
+			};
 
-			 if (e.target.dataset.action === 'minus') {
+			if (e.target.dataset.action === 'minus') {
 
-			 	counter.value = --counter.value;
+				counter.value = --counter.value;
 
-			 };
+			};
 
-			 if (counter.value < 0) {
+			if (counter.value < 0) {
 
-			 	counter.value = 0
-			 };
+				counter.value = 0
+			};
 
+		};
+	};
+
+
+	window.addEventListener('click', counterHandler);
+
+	removeHendler(counterHandler);
+
+
+const removeProduct = (e) => {
+
+	if(e.target.dataset.action === 'del'){
+     
+		
 	}
 
-});
+} 
 
-// cart
+	window.addEventListener('click', removeProduct);
 
+
+
+// render cart
 
 const renderToCart = () => {
 
@@ -43,7 +62,7 @@ const renderToCart = () => {
 
 	console.log(parentElement);
 
-let data = 	localStorage.getProduct();
+let data = 	getProduct();
 
 data.forEach(({
 			id,
@@ -65,7 +84,7 @@ data.forEach(({
                		<div class="close">
                			<div class="close__inner">
                				<span class="close__text">Удалить</span>
-               				<div class="close__img"></div>
+               				<div class="close__img" data-action='del'></div>
                			</div>
                		</div>
 
@@ -90,39 +109,16 @@ data.forEach(({
 
 			parentElement.append(element);
 
-})
+});
 
 };
-
 
 renderToCart();
 
-
 };
 
-const getProduct = () => {
 
-	const productLocalStorage = localStorage.getItem('product');
-
-	if (productLocalStorage !== null) {
-
-		return JSON.parse(productLocalStorage);
-
-	}
-
-	return [];
-
-};
-
-const setProduct = (data) => {
-
-	let products = getProduct();
-
-	products.push(data);
-
-	localStorage.setItem('product', JSON.stringify(products))
-};
-
+// записываем данные о товаре в localStorage
 
 const addToLocalStorage = () => {
 
@@ -157,18 +153,23 @@ const addToLocalStorage = () => {
 
 	 window.addEventListener('click', hendleClick);
 
+	 removeHendler(hendleClick);
+
 		};
 
-		 const deleteHendler = () => {
 
-		 	const removeEventHandler = () => {
 
-		 		window.removeEventListener('click', hendleClick);
-		 	}
+// Удаление обработчика события
 
-		 	window.addEventListener('popstate', removeEventHandler);
+	const removeHendler = (action) => {
 
-		 };
+	window.addEventListener('popstate', () => {
+
+		window.removeEventListener('click', action);
+
+	});
+
+		};
 
 
 export default cart;

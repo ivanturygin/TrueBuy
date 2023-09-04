@@ -1,7 +1,7 @@
 import cards from "../modules/cards";
 import cart from "../modules/cart";
 import {addToLocalStorage} from "../modules/cart";
-import { deleteHendler } from "../modules/cart";
+import{removeAllEventListeners} from "../services/removeAllEventListeners"
 
 const urlPageTitle = '';
 
@@ -79,7 +79,6 @@ const router = async () => {
 
 		if(route === routes.cart){
 			cart();
-			deleteHendler();
 		};
 
 };

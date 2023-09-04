@@ -1,32 +1,24 @@
+const getProduct = () => {
 
-	class LocalStorageUtil {
+	const productLocalStorage = localStorage.getItem('product');
 
-		constructor() {
-			this.keyName = 'product';
-		}
+	if (productLocalStorage !== null) {
 
-		getProduct() {
+		return JSON.parse(productLocalStorage);
 
-			const productLocalStorage = localStorage.getItem(this.keyName);
+	}
 
-			if (productLocalStorage !== null) {
+	return [];
 
-				return JSON.parse(productLocalStorage);
+};
 
-			};
+const setProduct = (data) => {
 
-			return [];
+	let products = getProduct();
 
-		};
+	products.push(data);
 
-		setProduct(data) {
+	localStorage.setItem('product', JSON.stringify(products))
+};
 
-			let products = this.getProduct();
-
-				products.push(data);
-			
-			localStorage.setItem(this.keyName, JSON.stringify(products))
-		}
-	};
-
-	export{LocalStorageUtil};
+export {setProduct, getProduct};
