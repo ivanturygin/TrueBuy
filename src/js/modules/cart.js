@@ -49,8 +49,6 @@ const removeProduct = (e) => {
 		
 		const id = elementParent.getAttribute('data-id');
 
-		console.log(id);
-
 		elementParent.remove();
 
 		removeStorage(id);
@@ -59,7 +57,8 @@ const removeProduct = (e) => {
 };
 
 	window.addEventListener('click', removeProduct);
-
+ 
+	removeHendler(removeProduct);
 
 
 // render cart
@@ -67,8 +66,6 @@ const removeProduct = (e) => {
 const renderToCart = () => {
 
 	const parentElement = document.querySelector('.cart__list');
-
-	console.log(parentElement);
 
 let data = 	getProduct();
 
@@ -157,6 +154,7 @@ const addToLocalStorage = () => {
 					price: price
 
 				};
+
 				setProduct(productInfo);
 			};
 	 };

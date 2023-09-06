@@ -26,11 +26,18 @@ const removeStorage = (id) => {
 
 	let products = getProduct();
 
-	products.forEach((element) => {
-		if(element.id === id){
-			console.log(element.length);
+	let array = JSON.parse(localStorage.getItem('product'));
+
+	array.forEach((element) => {
+		if (element.id === id) {
+
+
+			array.splice(array.length, 1);
+
+       localStorage.setItem('product', JSON.stringify(array));
 		}
 	})
+
 }
 
 export {setProduct, getProduct, removeStorage};
