@@ -1,4 +1,4 @@
-import {setProduct, getProduct} from "../services/localStorageUtil";
+import {setProduct, getProduct, removeStorage} from "../services/localStorageUtil";
 
 function cart(){
 
@@ -45,10 +45,18 @@ const removeProduct = (e) => {
 
 	if(e.target.dataset.action === 'del'){
      
+		const elementParent = e.target.closest('.cart__item');
 		
+		const id = elementParent.getAttribute('data-id');
+
+		console.log(id);
+
+		elementParent.remove();
+
+		removeStorage(id);
 	}
 
-} 
+};
 
 	window.addEventListener('click', removeProduct);
 
@@ -74,6 +82,8 @@ data.forEach(({
 			const element = document.createElement('div');
 
 			element.classList.add('cart__item');
+
+			element.dataset.id = id;
 
 			element.innerHTML = `<div class="cart__item-image">
                		<img src=${img} alt="">
