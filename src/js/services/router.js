@@ -1,9 +1,10 @@
 import cards from "../modules/cards";
-import cart from "../modules/cart";
-import {addToLocalStorage} from "../modules/cart";
-import{removeAllEventListeners} from "../services/removeAllEventListeners"
+import {Cart} from "../modules/cart";
+import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
 
 const urlPageTitle = '';
+
+const cart = new Cart(setProduct, getProduct, removeStorage);
 
 const routes = {
 
@@ -70,16 +71,24 @@ const router = async () => {
 
 
 
-		if(route === routes.product){
-			cards('.card');
-			addToLocalStorage();
+if (route === routes.product) {
+	cards('.card');
 
-			console.log('card');
-		}
+	cart.addProductToCart();
+}
 
-		if(route === routes.cart){
-			cart();
-		};
+if (route === routes.cart) {
+
+	const parentElement = document.querySelector('.cart__list');
+
+
+    cart.renderCart(parentElement);
+
+	 cart.counter();
+
+	 cart.removeProduct();
+
+};
 
 };
 

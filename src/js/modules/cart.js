@@ -1,91 +1,134 @@
-import {setProduct, getProduct, removeStorage} from "../services/localStorageUtil";
+		class Cart {
 
-function cart(){
+			constructor(setProduct, getProduct, removeStorage) {
 
-	// counter
+				this.setProduct = setProduct;
+				this.getProduct = getProduct;
+				this.removeStorage = removeStorage;
 
-	let counter;
+				this.removeHendler = (action) => {
 
-	const counterHandler = (e) => {
+						window.addEventListener('popstate', () =>  {
 
-		if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus') {
+							window.removeEventListener('click', action);
 
-			const counterParent = e.target.closest('.caunter')
+					})};
 
-			counter = counterParent.querySelector('[data-counter]')
-
-
-			if (e.target.dataset.action === 'plus') {
-
-				counter.value = ++counter.value;
 
 			};
 
-			if (e.target.dataset.action === 'minus') {
 
-				counter.value = --counter.value;
+			counter() {
+
+				let counter;
+
+				const handlerCounter = (e) => {
+
+					if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus') {
+
+						const counterParent = e.target.closest('.caunter')
+
+						counter = counterParent.querySelector('[data-counter]')
+
+
+						if (e.target.dataset.action === 'plus') {
+
+							counter.value = ++counter.value;
+
+						};
+
+						if (e.target.dataset.action === 'minus') {
+
+							counter.value = --counter.value;
+
+						};
+
+						if (counter.value < 0) {
+
+							counter.value = 0
+						};
+
+					};
+				};
+
+
+				window.addEventListener('click', handlerCounter);
+
+				this.removeHendler(handlerCounter);
 
 			};
 
-			if (counter.value < 0) {
 
-				counter.value = 0
+			addProductToCart() {
+
+				const hendleClick = (e) => {
+
+					if (e.target.hasAttribute('data-cart')) {
+
+						const card = e.target.closest('.card__item');
+
+						const id = card.getAttribute('data-id'),
+
+							img = card.querySelector('.slider__img').getAttribute('src'),
+
+							title = card.querySelector('.card__title').textContent,
+
+							price = card.querySelector('.card__old-price').textContent,
+
+							btn = card.querySelector('.card__button-btn');
+
+						const productInfo = {
+
+							id: id,
+
+							img: img,
+
+							title: title,
+
+							price: price
+
+						};
+
+						this.setProduct(productInfo);
+
+						btn.classList.add('cart-add');
+
+						if (btn.classList.contains('cart-add')) {
+
+							btn.disabled = true;
+
+							btn.innerText = 'Товар в корзине'
+						}
+					};
+				};
+
+				window.addEventListener('click', hendleClick); 
+
+            this.removeHendler(hendleClick);
+
 			};
 
-		};
-	};
 
+			renderCart(parent) {
 
-	window.addEventListener('click', counterHandler);
+				let data = this.getProduct();
 
-	removeHendler(counterHandler);
+				console.log(parent);
 
+				data.forEach(({
+					id,
+					img,
+					title,
+					price
+				}) => {
 
-const removeProduct = (e) => {
+					const element = document.createElement('div');
 
-	if(e.target.dataset.action === 'del'){
-     
-		const elementParent = e.target.closest('.cart__item');
-		
-		const id = elementParent.getAttribute('data-id');
+					element.classList.add('cart__item');
 
-		elementParent.remove();
+					element.dataset.id = id;
 
-		removeStorage(id);
-
-		document.querySelector('cart-add').remove();
-
-	};
-
-};
-
-	window.addEventListener('click', removeProduct);
- 
-	removeHendler(removeProduct);
-
-
-// render cart
-
-const renderToCart = () => {
-
-	const parentElement = document.querySelector('.cart__list');
-
-let data = 	getProduct();
-
-data.forEach(({
-			id,
-			img,
-			title,
-			price
-		}) => {
-
-			const element = document.createElement('div');
-
-			element.classList.add('cart__item');
-
-			element.dataset.id = id;
-
-			element.innerHTML = `<div class="cart__item-image">
+					element.innerHTML = `<div class="cart__item-image">
                		<img src=${img} alt="">
                	</div>
 
@@ -117,82 +160,44 @@ data.forEach(({
 
                	</div>`;
 
-			parentElement.append(element);
+					parent.append(element);
 
-});
+				});
 
-};
-
-renderToCart();
-
-};
+			};
 
 
-// записываем данные о товаре в localStorage
+			removeProduct() {
 
-const addToLocalStorage = () => {
+				const handleRemoveProduct = (e) => {
 
-	const hendleClick = (e) => {
+					if (e.target.dataset.action === 'del') {
 
-			if (e.target.hasAttribute('data-cart')) {
+						const elementParent = e.target.closest('.cart__item');
 
-				const card = e.target.closest('.card__item');
+						const id = elementParent.getAttribute('data-id');
 
-				const id = card.getAttribute('data-id'),
+						elementParent.remove();
 
-					img = card.querySelector('.slider__img').getAttribute('src'),
+						this.removeStorage(id);
 
-					title = card.querySelector('.card__title').textContent,
+						document.querySelector('cart-add').remove();
 
-					price = card.querySelector('.card__old-price').textContent,
-
-               btn = card.querySelector('.card__button-btn');
-
-				const productInfo = {
-
-					id: id,
-
-					img: img,
-
-					title: title,
-
-					price: price
+					};
 
 				};
 
-				setProduct(productInfo);
+				window.addEventListener('click', handleRemoveProduct);
 
-				btn.classList.add('cart-add');
+				removeHendler(removeProduct);
 
-				if (btn.classList.contains('cart-add')) {
-
-					btn.disabled = true;
-
-					btn.innerText = 'Товар в корзине'
-				}
 			};
-	 };
 
-	 window.addEventListener('click', hendleClick);
 
-	 removeHendler(hendleClick);
-
-		};
+			};
+		
 
 
 
-// Удаление обработчика события
 
-	const removeHendler = (action) => {
-
-	window.addEventListener('popstate', () => {
-
-		window.removeEventListener('click', action);
-
-	});
-
-		};
-
-
-export default cart;
-export {addToLocalStorage};
+export {Cart};
