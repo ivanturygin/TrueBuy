@@ -52,7 +52,10 @@ const removeProduct = (e) => {
 		elementParent.remove();
 
 		removeStorage(id);
-	}
+
+		document.querySelector('cart-add').remove();
+
+	};
 
 };
 
@@ -141,7 +144,9 @@ const addToLocalStorage = () => {
 
 					title = card.querySelector('.card__title').textContent,
 
-					price = card.querySelector('.card__old-price').textContent;
+					price = card.querySelector('.card__old-price').textContent,
+
+               btn = card.querySelector('.card__button-btn');
 
 				const productInfo = {
 
@@ -156,6 +161,15 @@ const addToLocalStorage = () => {
 				};
 
 				setProduct(productInfo);
+
+				btn.classList.add('cart-add');
+
+				if (btn.classList.contains('cart-add')) {
+
+					btn.disabled = true;
+
+					btn.innerText = 'Товар в корзине'
+				}
 			};
 	 };
 
