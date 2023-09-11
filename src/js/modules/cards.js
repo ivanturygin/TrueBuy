@@ -67,7 +67,8 @@ function cards(parent) {
 	<div class="card__content-text">
 		<a class="card__title" href="#productCard">${productName}</a>
 		<div class="card__price">
-			${price} <span class="card__old-price"> ${oldPrice}</span>
+		<div class="card__price-text">${price}</div>
+			 <span class="card__old-price"> ${oldPrice}</span>
 			<div class="sale">
 				<p class="sale__text">${sale}</p>
 			</div>

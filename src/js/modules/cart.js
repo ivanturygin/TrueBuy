@@ -14,19 +14,29 @@
 
 					})};
 
-						this.sumProduct = (price) => {
+					this.sumPrices = (data) => {
 
-                    for (let priceString of price){
+						return data.reduce((totalPrice, item) => {
 
-							const price = parseFloat(priceString)
 
-							  console.log(price);
-						  }
+							if(typeof item.price === 'number') {
 
-						
+								return totalPrice + item.price;
 
-						  
-						}
+							}else if (typeof item.price === 'string'){
+
+								const numericPrice = parseFloat(item.price);
+
+
+								if(!isNaN(numericPrice)) {
+									return totalPrice + numericPrice;
+
+								}
+							}
+							return totalPrice;
+						}, 0);
+					}
+
 
 			};
 
@@ -102,7 +112,7 @@
 
 							title = card.querySelector('.card__title').textContent,
 
-							price = card.querySelector('.card__old-price').textContent,
+							price = card.querySelector('.card__price-text').textContent,
 
 							btn = card.querySelector('.card__button-btn');
 
@@ -142,7 +152,9 @@
 
 				let data = this.getProduct();
 
-				console.log(parent);
+				let a = this.sumPrices(data);
+            
+				console.log(a);
 
 				data.forEach(({
 					id,
@@ -151,7 +163,6 @@
 					price
 				}) => {
 
-					this.sumProduct(price);
 
 					const element = document.createElement('div');
 
