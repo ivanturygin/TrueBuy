@@ -75,13 +75,14 @@ if (route === routes.product) {
 	cards('.card');
 
 	cart.addProductToCart();
+
 }
 
 if (route === routes.cart) {
 
 	const parentElement = document.querySelector('.cart__list');
 
-
+cart.counterProduct();
     cart.renderCart(parentElement);
 
 	 cart.counter();

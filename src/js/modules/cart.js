@@ -14,6 +14,19 @@
 
 					})};
 
+						this.sumProduct = (price) => {
+
+                    for (let priceString of price){
+
+							const price = parseFloat(priceString)
+
+							  console.log(price);
+						  }
+
+						
+
+						  
+						}
 
 			};
 
@@ -55,6 +68,22 @@
 				window.addEventListener('click', handlerCounter);
 
 				this.removeHendler(handlerCounter);
+
+			};
+
+			counterProduct() {
+
+				const counterProduct = document.querySelector('.count'),
+					   countProductText = counterProduct.querySelector('.count__text');
+
+			let count =	this.getProduct();
+
+			countProductText.innerText = count.length;
+
+			if(count.length === 0 ){
+
+				counterProduct.style.display = 'none';
+			};
 
 			};
 
@@ -121,6 +150,8 @@
 					title,
 					price
 				}) => {
+
+					this.sumProduct(price);
 
 					const element = document.createElement('div');
 

@@ -36,6 +36,7 @@
 	&__buttom {
 		border: none;
 		background-color: #E2E1DD;
+		position: relative;
 	}
 
 }
@@ -58,4 +59,20 @@
 		color: #2D2D1F;
 		letter-spacing: inherit;
 	}
+
 }
+
+	.count{
+		width: 17px;
+		height: 17px;
+		border-radius: 50%;
+		border: 1px solid black;
+		position: absolute;
+		top: -7px;
+		left: 14px;
+		display: flex;
+		justify-content: center;
+		align-items:center;
+
+	}
+
