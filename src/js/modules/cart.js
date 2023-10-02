@@ -14,31 +14,38 @@
 
 					})};
 
-					this.sumPrices = (data) => {
-
-						return data.reduce((totalPrice, item) => {
-
-
-							if(typeof item.price === 'number') {
-
-								return totalPrice + item.price;
-
-							}else if (typeof item.price === 'string'){
-
-								const numericPrice = parseFloat(item.price);
-
-
-								if(!isNaN(numericPrice)) {
-									return totalPrice + numericPrice;
-
-								}
-							}
-							return totalPrice;
-						}, 0);
-					}
-
-
 			};
+
+
+
+			totalPrice(data){
+
+			let totalPrice = data.reduce((totalPrice, item) => {
+
+
+					if (typeof item.price === 'number') {
+
+						return totalPrice + item.price;
+
+					} else if (typeof item.price === 'string') {
+
+						const numericPrice = parseFloat(item.price);
+
+
+						if (!isNaN(numericPrice)) {
+							return totalPrice + numericPrice;
+
+						}
+					}
+					return totalPrice;
+				}, 0);
+
+				const elementSum = document.querySelector('.cart__price-sum');
+
+				elementSum.innerText = totalPrice + '' + '₽';
+
+				}
+			
 
 
 			counter() {
@@ -151,18 +158,14 @@
 			renderCart(parent) {
 
 				let data = this.getProduct();
-
-				let a = this.sumPrices(data);
             
-				console.log(a);
-
 				data.forEach(({
 					id,
 					img,
 					title,
 					price
 				}) => {
-
+               
 
 					const element = document.createElement('div');
 
@@ -206,6 +209,15 @@
 
 				});
 
+				if (document.querySelector('.cart__item')){
+					
+					const noProduct = document.querySelector('.noproduct');
+
+					noProduct.style.display = 'none';
+				}
+
+				this.totalPrice(data);
+
 			};
 
 
@@ -238,8 +250,5 @@
 
 			};
 		
-
-
-
 
 export {Cart};
