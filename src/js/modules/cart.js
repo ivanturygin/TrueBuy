@@ -1,10 +1,12 @@
-		class Cart {
+				class Cart {
 
-			constructor(setProduct, getProduct, removeStorage) {
+			constructor(setProduct, getProduct, removeStorage, state) {
 
 				this.setProduct = setProduct;
 				this.getProduct = getProduct;
 				this.removeStorage = removeStorage;
+				this.stateCart = state.cart;
+				this.stateCounter = state.counter;
 
 				this.removeHendler = (action) => {
 
@@ -15,7 +17,6 @@
 					})};
 
 			};
-
 
 
 			totalPrice(data){
@@ -91,16 +92,26 @@
 			counterProduct() {
 
 				const counterProduct = document.querySelector('.count'),
-					   countProductText = counterProduct.querySelector('.count__text');
+					   countProductText = counterProduct.querySelector('.count__text'),
+						noproduct = document.querySelector('.noproduct');
+         
+						let count = this.stateCart.length;
 
-			let count =	this.getProduct();
+						this.stateCounter = count;
 
-			countProductText.innerText = count.length;
+						countProductText.innerText = this.stateCounter;
 
-			if(count.length === 0 ){
+						if(count === 0){
 
-				counterProduct.style.display = 'none';
-			};
+							counterProduct.classList.add('count_clear');
+
+							noproduct.classList.remove('noproduct_clear');
+
+						}else {
+
+							counterProduct.classList.remove('count_clear')
+							noproduct.classList.add('noproduct_clear');
+						};
 
 			};
 
@@ -135,6 +146,8 @@
 
 						};
 
+						this.stateCart.push(productInfo);
+
 						this.setProduct(productInfo);
 
 						btn.classList.add('cart-add');
@@ -145,6 +158,8 @@
 
 							btn.innerText = 'Товар в корзине'
 						}
+
+						this.counterProduct();
 					};
 				};
 
@@ -157,7 +172,7 @@
 
 			renderCart(parent) {
 
-				let data = this.getProduct();
+				let data = this.stateCart;
             
 				data.forEach(({
 					id,
@@ -209,14 +224,10 @@
 
 				});
 
-				if (document.querySelector('.cart__item')){
-					
-					const noProduct = document.querySelector('.noproduct');
 
-					noProduct.style.display = 'none';
-				}
+				this.counterProduct();
 
-				this.totalPrice(data);
+				this.totalPrice(this.stateCart);
 
 			};
 
@@ -231,9 +242,21 @@
 
 						const id = elementParent.getAttribute('data-id');
 
+						this.removeStorage(id);
+
 						elementParent.remove();
 
-						this.removeStorage(id);
+						for( let i = 0; i < this.stateCart.length; i++){
+
+							if (this.stateCart[i].id === id){
+
+								this.stateCart.splice(i, 1)
+							}
+
+							this.totalPrice(this.stateCart);
+
+							this.counterProduct();
+						};
 
 						document.querySelector('cart-add').remove();
 
@@ -243,10 +266,9 @@
 
 				window.addEventListener('click', handleRemoveProduct);
 
-				removeHendler(removeProduct);
+				this.removeHendler(handleRemoveProduct);
 
 			};
-
 
 			};
 		

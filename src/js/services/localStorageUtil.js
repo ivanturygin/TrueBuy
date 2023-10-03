@@ -1,3 +1,16 @@
+import { appState } from "./state";
+
+const setState = () => {
+
+	let products = getProduct();
+
+	products.forEach((item) => {
+     
+		appState.cart.push(item);
+
+	});
+};
+
 const getProduct = () => {
 
 	const productLocalStorage = localStorage.getItem('product');
@@ -36,4 +49,4 @@ for (let i = 0 ; i < products.length ; i++){
 	};
 }};
 
-export {setProduct, getProduct, removeStorage};
+export {setProduct, getProduct, removeStorage,setState};

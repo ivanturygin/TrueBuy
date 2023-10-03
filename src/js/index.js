@@ -1,8 +1,10 @@
 import {router} from "./services/router";
 import {server} from "./services/server";
-import cart from "./modules/cart";
+import {setState} from "./services/localStorageUtil";
 
 document.addEventListener("DOMContentLoaded", function () {
+
+	setState();
 
 	window.addEventListener('hashchange',router);
 

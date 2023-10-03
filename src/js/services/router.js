@@ -1,10 +1,11 @@
 import cards from "../modules/cards";
 import {Cart} from "../modules/cart";
 import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
+import {appState} from "./state";
 
 const urlPageTitle = '';
 
-const cart = new Cart(setProduct, getProduct, removeStorage);
+const cart = new Cart(setProduct, getProduct, removeStorage, appState);
 
 const routes = {
 
@@ -70,19 +71,21 @@ const router = async () => {
 		.setAttribute('content', route.description);
 
 
-
 if (route === routes.product) {
+
 	cards('.card');
 
 	cart.addProductToCart();
 
-}
+	cart.counterProduct();
+
+};
+
 
 if (route === routes.cart) {
 
 	const parentElement = document.querySelector('.cart__list');
 
-cart.counterProduct();
     cart.renderCart(parentElement);
 
 	 cart.counter();
@@ -92,5 +95,6 @@ cart.counterProduct();
 };
 
 };
+
 
 export {router};
