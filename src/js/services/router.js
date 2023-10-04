@@ -70,6 +70,11 @@ const router = async () => {
 	document.querySelector('meta[name = "description"]')
 		.setAttribute('content', route.description);
 
+if (route === routes.main){
+
+	cart.counterProduct();
+
+};
 
 if (route === routes.product) {
 
@@ -79,6 +84,8 @@ if (route === routes.product) {
 
 	cart.counterProduct();
 
+	cart.checkElements(document.querySelectorAll('.card__item'));
+
 };
 
 
@@ -86,11 +93,11 @@ if (route === routes.cart) {
 
 	const parentElement = document.querySelector('.cart__list');
 
-    cart.renderCart(parentElement);
+   cart.renderCart(parentElement);
 
-	 cart.counter();
+	cart.counter();
 
-	 cart.removeProduct();
+	cart.removeProduct();
 
 };
 

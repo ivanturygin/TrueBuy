@@ -19,6 +19,32 @@
 			};
 
 
+			checkElements(element) {
+
+
+      element.forEach((item) => {
+
+			const id = item.getAttribute('data-id');
+
+			const btn = item.querySelector('.card__button-btn');
+
+			console.log(btn);
+
+		this.stateCart.forEach((item) => {
+
+			if(item.id === id){
+
+				btn.disabled = true;
+
+				btn.innerText = 'Товар в корзине'
+			}
+		})
+
+		});
+
+			};
+
+
 			totalPrice(data){
 
 			let totalPrice = data.reduce((totalPrice, item) => {
@@ -101,17 +127,20 @@
 
 						countProductText.innerText = this.stateCounter;
 
-						if(count === 0){
+							if (count === 0) {
 
-							counterProduct.classList.add('count_clear');
+								counterProduct.classList.add('count_clear');
 
-							noproduct.classList.remove('noproduct_clear');
+							 noproduct ? noproduct.classList.remove('noproduct_clear') : '';
 
-						}else {
+							} else {
 
-							counterProduct.classList.remove('count_clear')
-							noproduct.classList.add('noproduct_clear');
-						};
+								counterProduct.classList.remove('count_clear');
+
+								noproduct ? noproduct.classList.add('noproduct_clear') : '';
+
+							};
+
 
 			};
 
@@ -130,9 +159,7 @@
 
 							title = card.querySelector('.card__title').textContent,
 
-							price = card.querySelector('.card__price-text').textContent,
-
-							btn = card.querySelector('.card__button-btn');
+							price = card.querySelector('.card__price-text').textContent;
 
 						const productInfo = {
 
@@ -149,15 +176,6 @@
 						this.stateCart.push(productInfo);
 
 						this.setProduct(productInfo);
-
-						btn.classList.add('cart-add');
-
-						if (btn.classList.contains('cart-add')) {
-
-							btn.disabled = true;
-
-							btn.innerText = 'Товар в корзине'
-						}
 
 						this.counterProduct();
 					};
@@ -228,6 +246,7 @@
 				this.counterProduct();
 
 				this.totalPrice(this.stateCart);
+
 
 			};
 

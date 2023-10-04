@@ -1,5 +1,6 @@
 import slider from "./slider";
 import {cardsProduct} from "../db";
+;
 
 function cards(parent) {
 
@@ -9,6 +10,7 @@ function cards(parent) {
 			
 			this.parent = document.querySelector(parent);
 			this.slider = slider;
+			
 			
 		}
 
