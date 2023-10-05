@@ -16,31 +16,47 @@
 
 					})};
 
+				this.elementText = (element) => {
+
+
+					const btn = element.querySelector('.card__button-btn');
+
+					btn.innerText = 'Товар в корзине';
+
+				};
+
 			};
 
 
 			checkElements(element) {
 
+					if (Object.keys(element).length > 0){
 
-      element.forEach((item) => {
+						element.forEach((item) => {
 
-			const id = item.getAttribute('data-id');
+							const itemElement = item;
 
-			const btn = item.querySelector('.card__button-btn');
+							const id = item.getAttribute('data-id');
 
-			console.log(btn);
+							this.stateCart.forEach((item) => {
 
-		this.stateCart.forEach((item) => {
+								if (item.id === id) {
 
-			if(item.id === id){
+									this.elementText(itemElement);
 
-				btn.disabled = true;
+									itemElement.classList.toggle('cart-add');
 
-				btn.innerText = 'Товар в корзине'
-			}
-		})
+								};
 
-		});
+							});
+
+						});
+
+					}else{
+
+						this.elementText(element);
+
+					};
 
 			};
 
@@ -48,7 +64,6 @@
 			totalPrice(data){
 
 			let totalPrice = data.reduce((totalPrice, item) => {
-
 
 					if (typeof item.price === 'number') {
 
@@ -60,18 +75,22 @@
 
 
 						if (!isNaN(numericPrice)) {
+
 							return totalPrice + numericPrice;
 
-						}
-					}
+						};
+
+					};
+
 					return totalPrice;
+
 				}, 0);
 
 				const elementSum = document.querySelector('.cart__price-sum');
 
 				elementSum.innerText = totalPrice + '' + '₽';
 
-				}
+				};
 			
 
 
@@ -83,9 +102,9 @@
 
 					if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus') {
 
-						const counterParent = e.target.closest('.caunter')
+						const counterParent = e.target.closest('.caunter');
 
-						counter = counterParent.querySelector('[data-counter]')
+						counter = counterParent.querySelector('[data-counter]');
 
 
 						if (e.target.dataset.action === 'plus') {
@@ -102,10 +121,12 @@
 
 						if (counter.value < 0) {
 
-							counter.value = 0
+							counter.value = 0;
+
 						};
 
 					};
+
 				};
 
 
@@ -118,7 +139,7 @@
 			counterProduct() {
 
 				const counterProduct = document.querySelector('.count'),
-					   countProductText = counterProduct.querySelector('.count__text'),
+					countProductText = counterProduct.querySelector('.count__text'),
 						noproduct = document.querySelector('.noproduct');
          
 						let count = this.stateCart.length;
@@ -131,7 +152,7 @@
 
 								counterProduct.classList.add('count_clear');
 
-							 noproduct ? noproduct.classList.remove('noproduct_clear') : '';
+							noproduct ? noproduct.classList.remove('noproduct_clear') : '';
 
 							} else {
 
@@ -173,11 +194,18 @@
 
 						};
 
+					if (card.classList.contains('cart-add')) {
+
+						console.log('hello');
+					}
+
 						this.stateCart.push(productInfo);
 
 						this.setProduct(productInfo);
 
 						this.counterProduct();
+
+						this.checkElements(card);
 					};
 				};
 
