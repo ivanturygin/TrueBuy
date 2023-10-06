@@ -18,10 +18,16 @@
 
 				this.elementText = (element) => {
 
-
 					const btn = element.querySelector('.card__button-btn');
 
-					btn.innerText = 'Товар в корзине';
+					if(element.classList.contains('cart-add')){
+
+						btn.innerText = 'Товар в корзине';
+
+					}else{
+
+						btn.innerText = 'В корзину';
+					};
 
 				};
 
@@ -44,19 +50,13 @@
 
 									this.elementText(itemElement);
 
-									itemElement.classList.toggle('cart-add');
-
 								};
 
 							});
 
 						});
 
-					}else{
-
-						this.elementText(element);
-
-					};
+					}
 
 			};
 
@@ -194,10 +194,7 @@
 
 						};
 
-					if (card.classList.contains('cart-add')) {
-
-						console.log('hello');
-					}
+					if (!card.classList.contains('cart-add')) {
 
 						this.stateCart.push(productInfo);
 
@@ -206,6 +203,15 @@
 						this.counterProduct();
 
 						this.checkElements(card);
+
+					}else{
+					
+					};
+
+					card.classList.toggle('cart-add');
+
+					this.elementText(card);
+
 					};
 				};
 
@@ -304,8 +310,6 @@
 
 							this.counterProduct();
 						};
-
-						document.querySelector('cart-add').remove();
 
 					};
 
