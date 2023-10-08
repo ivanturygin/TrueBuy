@@ -16,18 +16,35 @@
 
 					})};
 
-				this.elementText = (element) => {
+
+				this.btnText = (element,checkStateId) => {
 
 					const btn = element.querySelector('.card__button-btn');
 
-					if(element.classList.contains('cart-add')){
+					if (!checkStateId) {
 
 						btn.innerText = 'Товар в корзине';
 
 					}else{
 
 						btn.innerText = 'В корзину';
+
 					};
+
+				};
+
+
+				this.elementCheckId = (elementId) => {
+
+				const arrayState =	this.stateCart.map(({id}) => id);
+
+				const arrayElement =  arrayState.some(item => {
+
+				return	item === elementId
+
+				});
+
+				return arrayElement
 
 				};
 
@@ -44,15 +61,14 @@
 
 							const id = item.getAttribute('data-id');
 
-							this.stateCart.forEach((item) => {
+						  const checkId = this.elementCheckId(id);
 
-								if (item.id === id) {
+						  if (checkId){
 
-									this.elementText(itemElement);
+							this.btnText(item)
 
-								};
-
-							});
+							card.classList.add('cart-add');
+						  }
 
 						});
 
@@ -194,23 +210,30 @@
 
 						};
 
-					if (!card.classList.contains('cart-add')) {
+						const checkStateId = this.elementCheckId(id);
 
-						this.stateCart.push(productInfo);
 
-						this.setProduct(productInfo);
+						if(!checkStateId){
 
-						this.counterProduct();
+							this.stateCart.push(productInfo);
 
-						this.checkElements(card);
+							this.setProduct(productInfo);
 
-					}else{
-					
-					};
+							this.counterProduct();
 
-					card.classList.toggle('cart-add');
+							this.checkElements(card);
 
-					this.elementText(card);
+							this.btnText(card, checkStateId);
+
+						}else{
+
+							this.btnText(card, checkStateId);
+
+							this.removeProduct(card, id);
+
+						}
+
+							card.classList.toggle('cart-add');
 
 					};
 				};
@@ -285,9 +308,27 @@
 			};
 
 
-			removeProduct() {
+			removeProduct(element, id) {
+
+				const remove = (id) => {
+
+					this.removeStorage(id);
+
+						for (let i = 0; i < this.stateCart.length; i++) {
+
+							if (this.stateCart[i].id === id) {
+
+								this.stateCart.splice(i, 1);
+
+							};
+
+							this.counterProduct();
+
+						};
+				};
 
 				const handleRemoveProduct = (e) => {
+
 
 					if (e.target.dataset.action === 'del') {
 
@@ -295,21 +336,11 @@
 
 						const id = elementParent.getAttribute('data-id');
 
-						this.removeStorage(id);
+						remove(id);
 
 						elementParent.remove();
 
-						for( let i = 0; i < this.stateCart.length; i++){
-
-							if (this.stateCart[i].id === id){
-
-								this.stateCart.splice(i, 1)
-							}
-
-							this.totalPrice(this.stateCart);
-
-							this.counterProduct();
-						};
+						this.totalPrice(this.stateCart);
 
 					};
 
@@ -319,7 +350,15 @@
 
 				this.removeHendler(handleRemoveProduct);
 
+
+				if (element && element.classList.contains('cart-add')){
+
+					remove(id);
+
+				};
+
 			};
+
 
 			};
 		
