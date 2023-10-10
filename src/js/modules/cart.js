@@ -65,14 +65,17 @@
 
 						  if (checkId){
 
-							this.btnText(item)
+							this.btnText(item);
 
-							card.classList.add('cart-add');
-						  }
+							item.classList.toggle('cart-add');
+
+						  };
 
 						});
 
-					}
+					};
+
+					this.addProductToCart();
 
 			};
 
@@ -122,6 +125,11 @@
 
 						counter = counterParent.querySelector('[data-counter]');
 
+						const card = e.target.closest('.card__item');
+
+						const id = card.getAttribute('data-id');
+
+console.log(id);
 
 						if (e.target.dataset.action === 'plus') {
 
@@ -221,7 +229,6 @@
 
 							this.counterProduct();
 
-							this.checkElements(card);
 
 							this.btnText(card, checkStateId);
 
@@ -358,7 +365,6 @@
 				};
 
 			};
-
 
 			};
 		

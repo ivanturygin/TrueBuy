@@ -80,11 +80,9 @@ if (route === routes.product) {
 
 	cards('.card');
 
-	cart.addProductToCart();
+	cart.checkElements(document.querySelectorAll('.card__item'));
 
 	cart.counterProduct();
-
-	cart.checkElements(document.querySelectorAll('.card__item'));
 
 };
 
