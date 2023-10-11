@@ -125,29 +125,45 @@
 
 						counter = counterParent.querySelector('[data-counter]');
 
-						const card = e.target.closest('.card__item');
+						const itemParent = e.target.closest('.cart__item');
 
-						const id = card.getAttribute('data-id');
+						const id = itemParent.getAttribute('data-id')
 
-console.log(id);
+this.stateCart.forEach((item) => {
+
 
 						if (e.target.dataset.action === 'plus') {
 
 							counter.value = ++counter.value;
 
+							counter = counter.value;
+
+							item.pcs = item.pcs + (1)
+
+							console.log(item.pcs)
+
 						};
+						
 
 						if (e.target.dataset.action === 'minus') {
 
-							counter.value = --counter.value;
+							if (item.pcs > 1) {
+
+								counter.value = --counter.value;
+
+								item.pcs = item.pcs - (1)
+
+							}else {
+
+								counter.value = 1;
+
+								item.pcs = 1;
+								
+							};
 
 						};
 
-						if (counter.value < 0) {
-
-							counter.value = 0;
-
-						};
+					});
 
 					};
 
@@ -167,6 +183,13 @@ console.log(id);
 						noproduct = document.querySelector('.noproduct');
          
 						let count = this.stateCart.length;
+
+						let pcs = this.stateCart.pcs;
+
+						if (pcs > 1){
+
+							console.log('hello');
+						}
 
 						this.stateCounter = count;
 
@@ -214,7 +237,9 @@ console.log(id);
 
 							title: title,
 
-							price: price
+							price: price,
+
+							pcs: 1
 
 						};
 
