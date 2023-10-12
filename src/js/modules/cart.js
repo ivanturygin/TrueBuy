@@ -110,12 +110,20 @@
 				elementSum.innerText = totalPrice + '' + '₽';
 
 				};
-			
 
 
 			counter() {
 
-				let counter;
+			const getPcs = () => {
+
+			
+			}
+
+			let counter;
+
+			let element = 	document.querySelectorAll('.cart__item');
+
+			element.forEach((item) => {
 
 				const handlerCounter = (e) => {
 
@@ -123,24 +131,18 @@
 
 						const counterParent = e.target.closest('.caunter');
 
-						counter = counterParent.querySelector('[data-counter]');
-
-						const itemParent = e.target.closest('.cart__item');
-
-						const id = itemParent.getAttribute('data-id')
-
-this.stateCart.forEach((item) => {
+					const	elementCounter = counterParent.querySelector('[data-counter]');
 
 
 						if (e.target.dataset.action === 'plus') {
 
-							counter.value = ++counter.value;
+							elementCounter.value = ++elementCounter.value;
 
-							counter = counter.value;
+							counter = +elementCounter.value;
 
-							item.pcs = item.pcs + (1)
+							console.log(getPcs());
 
-							console.log(item.pcs)
+				      this.counterProduct();
 
 						};
 						
@@ -151,7 +153,9 @@ this.stateCart.forEach((item) => {
 
 								counter.value = --counter.value;
 
-								item.pcs = item.pcs - (1)
+								item.pcs = item.pcs - (1);
+
+								this.counterProduct();
 
 							}else {
 
@@ -163,16 +167,15 @@ this.stateCart.forEach((item) => {
 
 						};
 
-					});
-
 					};
 
 				};
 
-
-				window.addEventListener('click', handlerCounter);
+				item.addEventListener('click', handlerCounter);
 
 				this.removeHendler(handlerCounter);
+
+				});
 
 			};
 
@@ -181,20 +184,25 @@ this.stateCart.forEach((item) => {
 				const counterProduct = document.querySelector('.count'),
 					countProductText = counterProduct.querySelector('.count__text'),
 						noproduct = document.querySelector('.noproduct');
+
+						this.stateCart.forEach((item) => {
+
+						let pcs = item.pcs;
+
+								let count = this.stateCart.length;
+
+								this.stateCounter = count;
+
+						if(pcs > 1){
+
+							this.stateCounter = (count + pcs) - 1;
+
+						};
+
+
+							countProductText.innerText = this.stateCounter;
          
-						let count = this.stateCart.length;
-
-						let pcs = this.stateCart.pcs;
-
-						if (pcs > 1){
-
-							console.log('hello');
-						}
-
-						this.stateCounter = count;
-
-						countProductText.innerText = this.stateCounter;
-
+				
 							if (count === 0) {
 
 								counterProduct.classList.add('count_clear');
@@ -209,6 +217,7 @@ this.stateCart.forEach((item) => {
 
 							};
 
+	});
 
 			};
 
