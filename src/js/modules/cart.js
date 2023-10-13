@@ -114,10 +114,21 @@
 
 			counter() {
 
-			const getPcs = () => {
+			const setPcs = (id,quantity) => {
 
+				this.stateCart.forEach((item) => {
+
+					if (item.id === id){
+
+						item.pcs = quantity;
+
+						this.counterProduct(item.pcs);
+
+					};
+
+				});
+			};
 			
-			}
 
 			let counter;
 
@@ -133,6 +144,10 @@
 
 					const	elementCounter = counterParent.querySelector('[data-counter]');
 
+					const counterItemParent = e.target.closest('.cart__item');
+
+						const id = counterItemParent.getAttribute('data-id');
+
 
 						if (e.target.dataset.action === 'plus') {
 
@@ -140,30 +155,18 @@
 
 							counter = +elementCounter.value;
 
-							console.log(getPcs());
-
-				      this.counterProduct();
+							setPcs(id,counter);
 
 						};
 						
 
 						if (e.target.dataset.action === 'minus') {
 
-							if (item.pcs > 1) {
+								elementCounter.value = --elementCounter.value;
 
-								counter.value = --counter.value;
+								counter = +elementCounter.value;
 
-								item.pcs = item.pcs - (1);
-
-								this.counterProduct();
-
-							}else {
-
-								counter.value = 1;
-
-								item.pcs = 1;
-								
-							};
+									setPcs(id, counter);
 
 						};
 
@@ -179,7 +182,7 @@
 
 			};
 
-			counterProduct() {
+			counterProduct(pcs) {
 
 				const counterProduct = document.querySelector('.count'),
 					countProductText = counterProduct.querySelector('.count__text'),
@@ -187,17 +190,27 @@
 
 						this.stateCart.forEach((item) => {
 
-						let pcs = item.pcs;
 
 								let count = this.stateCart.length;
 
-								this.stateCounter = count;
+								let stateCounter = this.stateCounter;
 
-						if(pcs > 1){
+								let totalCount;
 
-							this.stateCounter = (count + pcs) - 1;
+								if (this.stateCounter === 0) {
 
-						};
+									this.stateCounter = count;
+
+								};
+
+								if (pcs > 1 && this.stateCounter > 0) {
+
+									let a = stateCounter;
+
+									console.log(a);
+
+								}; 
+
 
 
 							countProductText.innerText = this.stateCounter;
@@ -401,6 +414,15 @@
 			};
 
 			};
+
+			class Form {
+
+				constructor (){
+
+					this.form = document.querySelector('.form cart__form');
+					
+				}
+			}
 		
 
 export {Cart};
