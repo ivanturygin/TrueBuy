@@ -84,6 +84,10 @@
 
 			let totalPrice = data.reduce((totalPrice, item) => {
 
+			const pcs = item.pcs;
+
+			console.log(pcs);
+
 					if (typeof item.price === 'number') {
 
 						return totalPrice + item.price;
@@ -108,6 +112,7 @@
 				const elementSum = document.querySelector('.cart__price-sum');
 
 				elementSum.innerText = totalPrice + '' + '₽';
+
 
 				};
 
@@ -148,6 +153,8 @@
 
 						const id = counterItemParent.getAttribute('data-id');
 
+						const price = counterItemParent.querySelector('.new').textContent;
+
 
 						if (e.target.dataset.action === 'plus') {
 
@@ -156,6 +163,8 @@
 							counter = +elementCounter.value;
 
 							setPcs(id,counter);
+
+							this.totalPrice(this.stateCart);
 
 						};
 						
@@ -188,35 +197,16 @@
 					countProductText = counterProduct.querySelector('.count__text'),
 						noproduct = document.querySelector('.noproduct');
 
-						this.stateCart.forEach((item) => {
 
+					const pcsItem = this.stateCart.map(({pcs}) => pcs);
 
-								let count = this.stateCart.length;
+					const pscSum = pcsItem.reduce((acc, num) => acc + num, 0);
 
-								let stateCounter = this.stateCounter;
-
-								let totalCount;
-
-								if (this.stateCounter === 0) {
-
-									this.stateCounter = count;
-
-								};
-
-								if (pcs > 1 && this.stateCounter > 0) {
-
-									let a = stateCounter;
-
-									console.log(a);
-
-								}; 
-
-
+					this.stateCounter = pscSum;
 
 							countProductText.innerText = this.stateCounter;
          
-				
-							if (count === 0) {
+						if (pscSum === 0) {
 
 								counterProduct.classList.add('count_clear');
 
@@ -229,8 +219,6 @@
 								noproduct ? noproduct.classList.add('noproduct_clear') : '';
 
 							};
-
-	});
 
 			};
 
