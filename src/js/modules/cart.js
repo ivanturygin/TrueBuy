@@ -1,311 +1,317 @@
 				class Cart {
 
-			constructor(setProduct, getProduct, removeStorage, state) {
+					constructor(setProduct, getProduct, removeStorage, stateCart, stateCounter) {
 
-				this.setProduct = setProduct;
-				this.getProduct = getProduct;
-				this.removeStorage = removeStorage;
-				this.stateCart = state.cart;
-				this.stateCounter = state.counter;
+						this.setProduct = setProduct;
+						this.getProduct = getProduct;
+						this.removeStorage = removeStorage;
+						this.stateCart = stateCart;
+						this.stateCounter = stateCounter;
 
-				this.removeHendler = (action) => {
+                  this.removeHendler = (action) => {
 
-						window.addEventListener('popstate', () =>  {
+							window.addEventListener('popstate', () => {
 
-							window.removeEventListener('click', action);
+								window.removeEventListener('click', action);
 
-					})};
+							});
+						};
 
 
-				this.btnText = (element,checkStateId) => {
+						this.btnText = (element, checkStateId) => {
 
-					const btn = element.querySelector('.card__button-btn');
+							const btn = element.querySelector('.card__button-btn');
 
-					if (!checkStateId) {
+							if (!checkStateId) {
 
-						btn.innerText = 'Товар в корзине';
+								btn.innerText = 'Товар в корзине';
 
-					}else{
+							} else {
 
-						btn.innerText = 'В корзину';
+								btn.innerText = 'В корзину';
+
+							};
+
+						};
+
+
+						this.elementCheckId = (elementId) => {
+
+							const arrayState = this.stateCart.map(({
+								id
+							}) => id);
+
+							const arrayElement = arrayState.some(item => {
+
+								return item === elementId
+
+							});
+
+							return arrayElement
+
+						};
 
 					};
 
-				};
+
+					checkElements(element) {
+
+						if (Object.keys(element).length > 0) {
+
+							element.forEach((item) => {
+
+								const itemElement = item;
+
+								const id = item.getAttribute('data-id');
+
+								const checkId = this.elementCheckId(id);
+
+								if (checkId) {
+
+									this.btnText(item);
+
+									item.classList.toggle('cart-add');
+
+								};
+
+							});
+
+						};
+
+						this.addProductToCart();
+
+					};
 
 
-				this.elementCheckId = (elementId) => {
+					totalPrice(data) {
 
-				const arrayState =	this.stateCart.map(({id}) => id);
+						let totalPrice = data.reduce((totalPrice, item) => {
 
-				const arrayElement =  arrayState.some(item => {
-
-				return	item === elementId
-
-				});
-
-				return arrayElement
-
-				};
-
-			};
+							const pcs = item.pcs;
 
 
-			checkElements(element) {
+							if (typeof item.price === 'number') {
 
-					if (Object.keys(element).length > 0){
+								return totalPrice + item.price;
+
+							} else if (typeof item.price === 'string') {
+
+								const numberPrice = parseFloat(item.price);
+
+								let numberPriceMult = numberPrice * pcs;
+
+								if (!isNaN(numberPrice)) {
+
+									return totalPrice + numberPriceMult;
+
+								};
+
+							};
+
+							return totalPrice;
+
+						}, 0);
+
+						const elementSum = document.querySelector('.cart__price-sum');
+
+						elementSum.innerText = totalPrice + ' ' + '₽';
+
+					};
+
+
+					counter() {
+
+						let counter;
+
+						let element = document.querySelectorAll('.cart__item');
+
+
+						const setPcs = (id, quantity) => {
+
+							this.stateCart.forEach((item) => {
+
+								if (item.id === id) {
+
+									item.pcs = quantity;
+
+									this.counterProduct(item.pcs);
+
+								};
+
+							});
+						};
+
 
 						element.forEach((item) => {
 
-							const itemElement = item;
+							const handlerCounter = (e) => {
 
-							const id = item.getAttribute('data-id');
+								if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus') {
 
-						  const checkId = this.elementCheckId(id);
+									const counterParent = e.target.closest('.caunter');
 
-						  if (checkId){
+									const elementCounter = counterParent.querySelector('[data-counter]');
 
-							this.btnText(item);
+									const counterItemParent = e.target.closest('.cart__item');
 
-							item.classList.toggle('cart-add');
+									const id = counterItemParent.getAttribute('data-id');
 
-						  };
+									const price = counterItemParent.querySelector('.new').textContent;
+
+
+									if (e.target.dataset.action === 'plus') {
+
+										elementCounter.value = ++elementCounter.value;
+
+										counter = +elementCounter.value;
+
+										setPcs(id, counter);
+
+										this.totalPrice(this.stateCart);
+
+									};
+
+
+									if (e.target.dataset.action === 'minus') {
+
+										elementCounter.value = --elementCounter.value;
+
+										counter = +elementCounter.value;
+
+										setPcs(id, counter);
+
+										this.totalPrice(this.stateCart);
+
+									};
+
+								};
+
+							};
+
+							item.addEventListener('click', handlerCounter);
+
+							this.removeHendler(handlerCounter);
 
 						});
 
 					};
 
-					this.addProductToCart();
 
-			};
+					counterProduct() {
 
+						const counterProduct = document.querySelector('.count'),
+							countProductText = counterProduct.querySelector('.count__text'),
+							noproduct = document.querySelector('.noproduct');
 
-			totalPrice(data){
 
-			let totalPrice = data.reduce((totalPrice, item) => {
+						const pcsItem = this.stateCart.map(({pcs}) => pcs);
 
-			const pcs = item.pcs;
+						const pscSum = pcsItem.reduce((acc, num) => acc + num, 0);
 
-			console.log(pcs);
+						this.stateCounter = pscSum;
 
-					if (typeof item.price === 'number') {
+						countProductText.innerText = this.stateCounter;
 
-						return totalPrice + item.price;
-
-					} else if (typeof item.price === 'string') {
-
-						const numericPrice = parseFloat(item.price);
-
-
-						if (!isNaN(numericPrice)) {
-
-							return totalPrice + numericPrice;
-
-						};
-
-					};
-
-					return totalPrice;
-
-				}, 0);
-
-				const elementSum = document.querySelector('.cart__price-sum');
-
-				elementSum.innerText = totalPrice + '' + '₽';
-
-
-				};
-
-
-			counter() {
-
-			const setPcs = (id,quantity) => {
-
-				this.stateCart.forEach((item) => {
-
-					if (item.id === id){
-
-						item.pcs = quantity;
-
-						this.counterProduct(item.pcs);
-
-					};
-
-				});
-			};
-			
-
-			let counter;
-
-			let element = 	document.querySelectorAll('.cart__item');
-
-			element.forEach((item) => {
-
-				const handlerCounter = (e) => {
-
-					if (e.target.dataset.action === 'plus' || e.target.dataset.action === 'minus') {
-
-						const counterParent = e.target.closest('.caunter');
-
-					const	elementCounter = counterParent.querySelector('[data-counter]');
-
-					const counterItemParent = e.target.closest('.cart__item');
-
-						const id = counterItemParent.getAttribute('data-id');
-
-						const price = counterItemParent.querySelector('.new').textContent;
-
-
-						if (e.target.dataset.action === 'plus') {
-
-							elementCounter.value = ++elementCounter.value;
-
-							counter = +elementCounter.value;
-
-							setPcs(id,counter);
-
-							this.totalPrice(this.stateCart);
-
-						};
-						
-
-						if (e.target.dataset.action === 'minus') {
-
-								elementCounter.value = --elementCounter.value;
-
-								counter = +elementCounter.value;
-
-									setPcs(id, counter);
-
-						};
-
-					};
-
-				};
-
-				item.addEventListener('click', handlerCounter);
-
-				this.removeHendler(handlerCounter);
-
-				});
-
-			};
-
-			counterProduct(pcs) {
-
-				const counterProduct = document.querySelector('.count'),
-					countProductText = counterProduct.querySelector('.count__text'),
-						noproduct = document.querySelector('.noproduct');
-
-
-					const pcsItem = this.stateCart.map(({pcs}) => pcs);
-
-					const pscSum = pcsItem.reduce((acc, num) => acc + num, 0);
-
-					this.stateCounter = pscSum;
-
-							countProductText.innerText = this.stateCounter;
-         
 						if (pscSum === 0) {
 
-								counterProduct.classList.add('count_clear');
+							counterProduct.classList.add('count_clear');
 
 							noproduct ? noproduct.classList.remove('noproduct_clear') : '';
 
-							} else {
+						} else {
 
-								counterProduct.classList.remove('count_clear');
+							counterProduct.classList.remove('count_clear');
 
-								noproduct ? noproduct.classList.add('noproduct_clear') : '';
-
-							};
-
-			};
-
-
-			addProductToCart() {
-
-				const hendleClick = (e) => {
-
-					if (e.target.hasAttribute('data-cart')) {
-
-						const card = e.target.closest('.card__item');
-
-						const id = card.getAttribute('data-id'),
-
-							img = card.querySelector('.slider__img').getAttribute('src'),
-
-							title = card.querySelector('.card__title').textContent,
-
-							price = card.querySelector('.card__price-text').textContent;
-
-						const productInfo = {
-
-							id: id,
-
-							img: img,
-
-							title: title,
-
-							price: price,
-
-							pcs: 1
+							noproduct ? noproduct.classList.add('noproduct_clear') : '';
 
 						};
 
-						const checkStateId = this.elementCheckId(id);
+					};
 
 
-						if(!checkStateId){
+					addProductToCart() {
 
-							this.stateCart.push(productInfo);
+						const hendleClick = (e) => {
 
-							this.setProduct(productInfo);
+							if (e.target.hasAttribute('data-cart')) {
 
-							this.counterProduct();
+								const card = e.target.closest('.card__item');
+
+								const id = card.getAttribute('data-id'),
+
+									img = card.querySelector('.slider__img').getAttribute('src'),
+
+									title = card.querySelector('.card__title').textContent,
+
+									price = card.querySelector('.card__price-text').textContent,
+
+								   checkStateId = this.elementCheckId(id);
+
+								const productInfo = {
+
+									id: id,
+
+									img: img,
+
+									title: title,
+
+									price: price,
+
+									pcs: 1
+
+								};
 
 
-							this.btnText(card, checkStateId);
+								if (!checkStateId) {
 
-						}else{
+									this.stateCart.push(productInfo);
 
-							this.btnText(card, checkStateId);
+									this.setProduct(productInfo);
 
-							this.removeProduct(card, id);
+									this.counterProduct();
 
-						}
 
-							card.classList.toggle('cart-add');
+									this.btnText(card, checkStateId);
+
+								} else {
+
+									this.btnText(card, checkStateId);
+
+									this.removeProduct(card, id);
+
+								}
+
+								card.classList.toggle('cart-add');
+
+							};
+						};
+
+						window.addEventListener('click', hendleClick);
+
+						this.removeHendler(hendleClick);
 
 					};
-				};
-
-				window.addEventListener('click', hendleClick); 
-
-            this.removeHendler(hendleClick);
-
-			};
 
 
-			renderCart(parent) {
+					renderCart(parent) {
 
-				let data = this.stateCart;
-            
-				data.forEach(({
-					id,
-					img,
-					title,
-					price
-				}) => {
-               
+						let data = this.stateCart;
 
-					const element = document.createElement('div');
+						data.forEach(({
+							id,
+							img,
+							title,
+							price
+						}) => {
 
-					element.classList.add('cart__item');
 
-					element.dataset.id = id;
+							const element = document.createElement('div');
 
-					element.innerHTML = `<div class="cart__item-image">
+							element.classList.add('cart__item');
+
+							element.dataset.id = id;
+
+							element.innerHTML = `<div class="cart__item-image">
                		<img src=${img} alt="">
                	</div>
 
@@ -337,80 +343,104 @@
 
                	</div>`;
 
-					parent.append(element);
+							parent.append(element);
 
-				});
+						});
 
-
-				this.counterProduct();
-
-				this.totalPrice(this.stateCart);
-
-
-			};
-
-
-			removeProduct(element, id) {
-
-				const remove = (id) => {
-
-					this.removeStorage(id);
-
-						for (let i = 0; i < this.stateCart.length; i++) {
-
-							if (this.stateCart[i].id === id) {
-
-								this.stateCart.splice(i, 1);
-
-							};
-
-							this.counterProduct();
-
-						};
-				};
-
-				const handleRemoveProduct = (e) => {
-
-
-					if (e.target.dataset.action === 'del') {
-
-						const elementParent = e.target.closest('.cart__item');
-
-						const id = elementParent.getAttribute('data-id');
-
-						remove(id);
-
-						elementParent.remove();
+						this.counterProduct();
 
 						this.totalPrice(this.stateCart);
 
 					};
 
+
+					removeProduct(element, id) {
+
+						const remove = (id) => {
+
+							this.removeStorage(id);
+
+							for (let i = 0; i < this.stateCart.length; i++) {
+
+								if (this.stateCart[i].id === id) {
+
+									this.stateCart.splice(i, 1);
+
+								};
+
+								this.counterProduct();
+
+							};
+						};
+
+
+						const handleRemoveProduct = (e) => {
+
+							if (e.target.dataset.action === 'del') {
+
+								const elementParent = e.target.closest('.cart__item');
+
+								const id = elementParent.getAttribute('data-id');
+
+								remove(id);
+
+								elementParent.remove();
+
+								this.totalPrice(this.stateCart);
+
+							};
+
+						};
+
+						window.addEventListener('click', handleRemoveProduct);
+
+						this.removeHendler(handleRemoveProduct);
+
+
+						if (element && element.classList.contains('cart-add')) {
+
+							remove(id);
+
+						};
+
+					};
+
 				};
 
-				window.addEventListener('click', handleRemoveProduct);
+				
+				class Form extends Cart {
 
-				this.removeHendler(handleRemoveProduct);
+					constructor(stateCart) {
+
+						super();
+
+							this.stateCart = stateCart;
+						
+					};
 
 
-				if (element && element.classList.contains('cart-add')){
+					submit(){
 
-					remove(id);
+						document.querySelector('.form').addEventListener('submit', (event) => {
 
+							event.preventDefault();
+
+							this.validation();
+
+							console.log(this.stateCart);
+
+
+						});
+
+					};
+
+
+					validation() {
+
+
+						console.log('validation');
+					};
 				};
 
-			};
 
-			};
-
-			class Form {
-
-				constructor (){
-
-					this.form = document.querySelector('.form cart__form');
-					
-				}
-			}
-		
-
-export {Cart};
+				export {Cart, Form};

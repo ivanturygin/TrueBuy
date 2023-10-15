@@ -1,11 +1,12 @@
 import cards from "../modules/cards";
-import {Cart} from "../modules/cart";
+import {Cart, Form} from "../modules/cart";
 import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
 import {appState} from "./state";
 
 const urlPageTitle = '';
 
-const cart = new Cart(setProduct, getProduct, removeStorage, appState);
+const cart = new Cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter);
+const form = new Form(appState.cart);
 
 const routes = {
 
@@ -96,6 +97,8 @@ if (route === routes.cart) {
 	cart.counter();
 
 	cart.removeProduct();
+
+	form.submit();
 
 };
 
