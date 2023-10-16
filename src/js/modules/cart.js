@@ -415,31 +415,126 @@
 						super();
 
 							this.stateCart = stateCart;
-						
+
 					};
 
 
 					submit(){
 
-						document.querySelector('.form').addEventListener('submit', (event) => {
+						const form = document.querySelector('.form');
+
+						form.addEventListener('submit', (event) => {
 
 							event.preventDefault();
 
-							this.validation();
-
-							console.log(this.stateCart);
-
+							this.validation(form);
 
 						});
 
 					};
 
 
-					validation() {
+					validation(form) {
+
+					let error = 0;
+
+					const formElements = form.querySelectorAll('.form__input-inp');
 
 
-						console.log('validation');
+					const addInputError = (input) => {
+
+						input.parentElement.classList.add('_error');
+
+						input.classList.add('_error');
+
 					};
+
+
+					const removeInputError = (input) => {
+
+						input.parentElement.classList.remove('_error');
+
+						input.classList.remove('_error');
+
+					};
+
+
+
+					for (let i = 0; i < formElements.length; i++) {
+
+						const input = formElements[i];
+
+							if (input.classList.contains('_error')) {
+
+						removeInputError(input);
+
+							error = 0;
+
+							};
+
+
+						if (input.classList.contains('_name')) {
+
+							const testName = /\D/.test(input.value);
+
+							if(!testName){
+
+								addInputError(input);
+
+								error++
+
+								console.log(error);
+
+							};
+
+						} else if (input.classList.contains('_tel')) {
+
+							if(input.value.length > 11 || input.value === "")
+
+                     	addInputError(input);
+
+								error++
+
+								console.log(error);
+
+								
+							} else if (input.classList.contains('_email')){
+
+								if (input.value === ""){
+
+										addInputError(input);
+
+										error++
+
+										console.log(error);
+
+								}
+
+
+							} else if (input.classList.contains('_adds')) {
+
+									if (input.value === "") {
+
+											addInputError(input);
+
+											error++
+
+											console.log(error);
+
+									}
+
+							};
+							
+
+									};
+
+
+
+					};
+
+					};
+
+					
 				};
 
 
