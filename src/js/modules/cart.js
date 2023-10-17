@@ -438,6 +438,8 @@
 
 					let error = 0;
 
+					let trigger = false;
+
 					const formElements = form.querySelectorAll('.form__input-inp');
 
 
@@ -459,10 +461,34 @@
 					};
 
 
+					const focusElement = (inp) => {
+
+						inp.addEventListener('focus', () => {
+
+							for (let i = 0; i < formElements.length; i++) {
+
+									const input = formElements[i];
+
+									if (input.classList.contains('_error')) {
+
+										removeInputError(input);
+
+										error = 0;
+
+									};
+
+							};
+
+						});
+
+					};
+
 
 					for (let i = 0; i < formElements.length; i++) {
 
 						const input = formElements[i];
+
+						focusElement(input)
 
 							if (input.classList.contains('_error')) {
 
@@ -491,7 +517,7 @@
 
 							if(input.value.length > 11 || input.value === "")
 
-                     	addInputError(input);
+                     addInputError(input);
 
 								error++
 
@@ -510,7 +536,6 @@
 
 								}
 
-
 							} else if (input.classList.contains('_adds')) {
 
 									if (input.value === "") {
@@ -525,16 +550,9 @@
 
 							};
 							
-
 									};
 
-
-
-					};
-
-					};
-
-					
+								};
 				};
 
 
