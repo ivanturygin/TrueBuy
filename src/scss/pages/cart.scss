@@ -139,6 +139,7 @@ background-color:$block-color;
 	&__input{
 		display: flex;
 		gap: 40px;
+		position: relative;
 	}
 
 	&__input:nth-child(1) {
@@ -218,5 +219,18 @@ margin-top: 22px;
 
 	&_clear{
 		display: none;
+	}
+}
+
+.error-text{
+	left: 96px;
+	position: absolute;
+	top: -20px;
+	color: #d70404;
+	font-size: 12px;
+	display: none;
+
+	&._on {
+		display: inline-block;
 	}
 }

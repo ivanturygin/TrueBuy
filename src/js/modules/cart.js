@@ -440,25 +440,44 @@
 
 					let trigger = false;
 
+					const formItem = form.querySelectorAll('.form__input');
+
 					const formElements = form.querySelectorAll('.form__input-inp');
 
 
-					const addInputError = (input) => {
+					const addInputError = (parentInput) => {
 
-						input.parentElement.classList.add('_error');
-
-						input.classList.add('_error');
+						parentInput.classList.add('_error');
 
 					};
 
 
 					const removeInputError = (input) => {
 
-						input.parentElement.classList.remove('_error');
 
 						input.classList.remove('_error');
 
 					};
+
+
+					const errorInput = (text, errorText, parentInput) => {
+
+						console.log(errorText);
+
+						if (parentInput.classList.contains('_error')) {
+
+							console.log('ok');
+
+							errorText.classList.add('_on');
+
+							errorText.textContent = text;
+						};
+
+					};
+					
+
+
+					
 
 
 					const focusElement = (inp) => {
@@ -484,11 +503,17 @@
 					};
 
 
-					for (let i = 0; i < formElements.length; i++) {
+					for (let i = 0; i < formItem.length; i++) {
 
-						const input = formElements[i];
+						const element = formItem[i];
 
-						focusElement(input)
+						const input = element.querySelector('.form__input-inp');
+
+						const parentInput = element.querySelector('.form__input-text');
+
+						const errorText = element.querySelector('.error-text');
+
+
 
 							if (input.classList.contains('_error')) {
 
@@ -505,34 +530,35 @@
 
 							if(!testName){
 
-								addInputError(input);
+								addInputError(parentInput);
 
 								error++
 
-								console.log(error);
+								errorInput('error', errorText, parentInput);
 
 							};
 
 						} else if (input.classList.contains('_tel')) {
 
-							if(input.value.length > 11 || input.value === "")
+							if(input.value === "")
 
-                     addInputError(input);
+                    	addInputError(parentInput);
+
+							
 
 								error++
 
-								console.log(error);
 
 								
 							} else if (input.classList.contains('_email')){
 
 								if (input.value === ""){
 
-										addInputError(input);
+											addInputError(parentInput);
+
+										
 
 										error++
-
-										console.log(error);
 
 								}
 
@@ -540,11 +566,11 @@
 
 									if (input.value === "") {
 
-											addInputError(input);
+											addInputError(parentInput);
+
 
 											error++
 
-											console.log(error);
 
 									}
 
