@@ -442,7 +442,6 @@
 
 					const formItem = form.querySelectorAll('.form__input');
 
-					const formElements = form.querySelectorAll('.form__input-inp');
 
 
 					const addInputError = (parentInput) => {
@@ -452,21 +451,16 @@
 					};
 
 
-					const removeInputError = (input) => {
+					const removeInputError = (parentInput) => {
 
-
-						input.classList.remove('_error');
+						parentInput.classList.remove('_error');
 
 					};
 
 
 					const errorInput = (text, errorText, parentInput) => {
 
-						console.log(errorText);
-
 						if (parentInput.classList.contains('_error')) {
-
-							console.log('ok');
 
 							errorText.classList.add('_on');
 
@@ -477,31 +471,24 @@
 					
 
 
-					
 
+					const focusElement = (input) => {
 
-					const focusElement = (inp) => {
-
-						inp.addEventListener('focus', () => {
-
-							for (let i = 0; i < formElements.length; i++) {
-
-									const input = formElements[i];
-
-									if (input.classList.contains('_error')) {
-
-										removeInputError(input);
+						input.addEventListener('focus', () => {
 
 										error = 0;
 
-									};
+										trigger = true;
 
-							};
+										a();
 
 						});
 
 					};
 
+					a();
+
+					function a(){
 
 					for (let i = 0; i < formItem.length; i++) {
 
@@ -513,11 +500,18 @@
 
 						const errorText = element.querySelector('.error-text');
 
+						if(trigger){
+
+							removeInputError(parentInput);
+
+							console.log(parentInput);
+
+						};
 
 
-							if (input.classList.contains('_error')) {
+							if (parentInput.classList.contains('_error')) {
 
-						removeInputError(input);
+						   removeInputError(parentInput);
 
 							error = 0;
 
@@ -534,7 +528,7 @@
 
 								error++
 
-								errorInput('error', errorText, parentInput);
+								errorInput('Введите корректное имя', errorText, parentInput);
 
 							};
 
@@ -544,11 +538,9 @@
 
                     	addInputError(parentInput);
 
-							
+							errorInput('Введите корректный номер', errorText, parentInput);
 
 								error++
-
-
 								
 							} else if (input.classList.contains('_email')){
 
@@ -556,7 +548,7 @@
 
 											addInputError(parentInput);
 
-										
+											errorInput('Введите корректный emale', errorText, parentInput);
 
 										error++
 
@@ -568,18 +560,19 @@
 
 											addInputError(parentInput);
 
+											errorInput('Введите корректный адрес', errorText, parentInput);
 
 											error++
-
-
-									}
+									};
 
 							};
-							
+
+							focusElement(input, formItem)
 									};
 
 								};
-				};
+									
+								};};
 
 
 				export {Cart, Form};
