@@ -429,6 +429,14 @@
 
 							this.validation(form);
 
+							if (this.validation(form) === true){
+
+								console.log('форма отправлена успешно');
+
+								event.target.reset();
+
+							};
+
 						});
 
 					};
@@ -436,7 +444,9 @@
 
 					validation(form) {
 
-					let error = 0;
+					let error = 3;
+
+					let result = true;
 
 					let trigger = false;
 
@@ -465,6 +475,10 @@
 							errorText.classList.add('_on');
 
 							errorText.textContent = text;
+
+						}else if (trigger) {
+
+							errorText.classList.remove('_on');
 						};
 
 					};
@@ -480,15 +494,17 @@
 
 										trigger = true;
 
-										a();
+										validationStart();
 
 						});
 
 					};
 
-					a();
 
-					function a(){
+					validationStart();
+
+
+					function validationStart(){
 
 					for (let i = 0; i < formItem.length; i++) {
 
@@ -500,14 +516,14 @@
 
 						const errorText = element.querySelector('.error-text');
 
+
 						if(trigger){
 
 							removeInputError(parentInput);
 
-							console.log(parentInput);
+							errorInput('', errorText, parentInput)
 
-						};
-
+						}else{
 
 							if (parentInput.classList.contains('_error')) {
 
@@ -516,6 +532,8 @@
 							error = 0;
 
 							};
+
+							
 
 
 						if (input.classList.contains('_name')) {
@@ -526,21 +544,27 @@
 
 								addInputError(parentInput);
 
-								error++
-
 								errorInput('Введите корректное имя', errorText, parentInput);
+
+								result = false;
+
 
 							};
 
+						} else if (error > 1) {
+
+							break; // Завершаем цикл, если error > 1
 						} else if (input.classList.contains('_tel')) {
 
-							if(input.value === "")
+							if(input.value === ""){
 
                     	addInputError(parentInput);
 
 							errorInput('Введите корректный номер', errorText, parentInput);
 
-								error++
+									result = false;
+
+							};
 								
 							} else if (input.classList.contains('_email')){
 
@@ -550,7 +574,7 @@
 
 											errorInput('Введите корректный emale', errorText, parentInput);
 
-										error++
+											result = false;
 
 								}
 
@@ -562,15 +586,22 @@
 
 											errorInput('Введите корректный адрес', errorText, parentInput);
 
-											error++
+												result = false;
 									};
 
-							};
+							};};
 
-							focusElement(input, formItem)
+							focusElement(input, formItem);
+
 									};
+
+									error = document.querySelectorAll('._error').length;
+
+									console.log(error);
 
 								};
+
+								return result;
 									
 								};};
 
