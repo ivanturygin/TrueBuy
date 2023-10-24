@@ -431,6 +431,7 @@
 
 							if (this.validation(form) === true){
 
+								this.sendData(form);
 								console.log('форма отправлена успешно');
 
 								event.target.reset();
@@ -440,6 +441,20 @@
 						});
 
 					};
+
+					async sendData(form) {
+
+						const data = new FormData(form);
+
+						for (let [key, value] of data) {
+							console.log(`${key} - ${value}`)
+						}
+
+						let response =  await fetch ('sendmail.php', {
+							method: 'POST',
+							body: data
+						 });
+					}
 
 
 					validation(form) {
@@ -551,7 +566,9 @@
 
 						} else if (input.classList.contains('_tel')) {
 
-							if(input.value === ""){
+							const testTel = /^([+]?[0-9\s-\(\)]{3,25})*$/.test(input.value);
+
+							if(input.value === "" || !testTel){
 
 									error++
 
@@ -570,7 +587,9 @@
 								
 							} else if (input.classList.contains('_email')){
 
-								if (input.value === ""){
+								const testEmale = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(input.value);
+
+								if (input.value === "" || !testEmale){
 
 										error++
 
@@ -602,6 +621,8 @@
 
 											errorInput('Введите корректный адрес', errorText, parentInput);
 
+											result = false;
+
 									};
 
 							};};
@@ -611,8 +632,6 @@
 									};
 
 								};
-
-								
 
 								return result;
 									
