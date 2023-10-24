@@ -444,7 +444,7 @@
 
 					validation(form) {
 
-					let error = 3;
+					let error = 0;
 
 					let result = true;
 
@@ -529,12 +529,9 @@
 
 						   removeInputError(parentInput);
 
-							error = 0;
-
-							};
-
 							
 
+							};
 
 						if (input.classList.contains('_name')) {
 
@@ -548,15 +545,20 @@
 
 								result = false;
 
+								error++
 
 							};
 
-						} else if (error > 1) {
-
-							break; // Завершаем цикл, если error > 1
 						} else if (input.classList.contains('_tel')) {
 
 							if(input.value === ""){
+
+									error++
+
+									if (error > 1) {
+
+										break;
+									}
 
                     	addInputError(parentInput);
 
@@ -570,6 +572,13 @@
 
 								if (input.value === ""){
 
+										error++
+
+									if (error > 1) {
+
+										break;
+									}
+
 											addInputError(parentInput);
 
 											errorInput('Введите корректный emale', errorText, parentInput);
@@ -582,11 +591,17 @@
 
 									if (input.value === "") {
 
+												error++
+
+												if (error > 1) {
+
+													break;
+												}
+
 											addInputError(parentInput);
 
 											errorInput('Введите корректный адрес', errorText, parentInput);
 
-												result = false;
 									};
 
 							};};
@@ -595,11 +610,9 @@
 
 									};
 
-									error = document.querySelectorAll('._error').length;
-
-									console.log(error);
-
 								};
+
+								
 
 								return result;
 									
