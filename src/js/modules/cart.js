@@ -432,8 +432,7 @@
 							if (this.validation(form) === true){
 
 								this.sendData(form);
-								console.log('форма отправлена успешно');
-
+							
 								event.target.reset();
 
 							};
@@ -446,14 +445,26 @@
 
 						const data = new FormData(form);
 
-						for (let [key, value] of data) {
-							console.log(`${key} - ${value}`)
-						}
+						try{
 
-						let response =  await fetch ('sendmail.php', {
+						let response = await fetch('./../file/sendmail.php', {
 							method: 'POST',
 							body: data
 						 });
+
+						  if (response.ok) {
+							 let result = await response.json();
+							 console.log(result.message);
+						 
+						  	console.log('Данные успешно отправлены');
+						  } else {
+						  
+						  	console.error('Ошибка при отправке данных:', response.status, response.statusText);
+						  }
+
+						} catch (error) {
+							 console.error('Ошибка при отправке данных:', error);
+						}
 					}
 
 
