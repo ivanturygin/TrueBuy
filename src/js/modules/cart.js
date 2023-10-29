@@ -445,27 +445,28 @@
 
 						const data = new FormData(form);
 
-						try{
+				fetch("/files/sandmail.php", {
+					method: "POST",
+					body: data
+				})
 
-						let response = await fetch('./../file/sendmail.php', {
-							method: 'POST',
-							body: data
-						 });
-
-						  if (response.ok) {
-							 let result = await response.json();
-							 console.log(result.message);
-						 
-						  	console.log('Данные успешно отправлены');
-						  } else {
-						  
-						  	console.error('Ошибка при отправке данных:', response.status, response.statusText);
-						  }
-
-						} catch (error) {
-							 console.error('Ошибка при отправке данных:', error);
-						}
+				
+				.then(response => {
+					if (response.ok){
+						console.log('данные отправлены');
+						return response.text()
 					}
+					throw new Error('Ответ сети был неудовлетворительным');
+				})
+				.then(data => {
+					console.log(data);
+				})
+				.catch(error => {
+					console.error('Возникла проблема с операцией получения данных:', error)
+				});
+
+				
+					};
 
 
 					validation(form) {
@@ -611,7 +612,7 @@
 
 											addInputError(parentInput);
 
-											errorInput('Введите корректный emale', errorText, parentInput);
+											errorInput('Введите корректный email', errorText, parentInput);
 
 											result = false;
 
