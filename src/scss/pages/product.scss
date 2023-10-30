@@ -135,6 +135,13 @@
 
 	}
 
+	&__nav-item.nav-link {
+
+		width: 50%;
+		height: 50%;
+		border: 1px solid black ;
+	}
+
 	&__indicator {
 		position: absolute;
 		bottom: 10px;

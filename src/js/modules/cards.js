@@ -1,12 +1,20 @@
 import slider from "./slider";
 import {cardsProduct} from "../db";
-
+;
 
 function cards(parent) {
 
-	const parentElement = document.querySelector(parent);
+	class ProductCard {
 
-	const render = () => {
+		constructor(parent, slider) {
+			
+			this.parent = document.querySelector(parent);
+			this.slider = slider;
+			
+			
+		}
+
+		render() {
 
 				cardsProduct.forEach(({
 					img,
@@ -25,10 +33,11 @@ function cards(parent) {
 
 			element.classList.add('card__item');
 
+
 			element.innerHTML = `<div class="card__image">
 
 	<div class="slider">
-		<div class="slider__wrapper">
+		 <div class="slider__wrapper">
 			<div class="slider__nav">
 
 				<div class="slider__nav-item nav-prev">
@@ -36,12 +45,12 @@ function cards(parent) {
 					<img class="slider__nav-img" src="../../img/icon/slider_nav.png" alt=""></div>
 
 				<div class="slider__nav-item nav-next">
-					<a href="#"> </a>
 					<img class="slider__nav-img" src="../../img/icon/slider_nav.png" alt="#"></div>
 			</div>
-			<div class="slider__inner">
-				<div class="slider__item">
-					<img class="slider__img" src=${img} alt="диван Velvet">
+			<div class = "slider__inner">
+
+				<div class = "slider__item">
+				<img class="slider__img" src=${img} alt="диван Velvet">
 				</div>
 
 				<div class="slider__item">
@@ -61,7 +70,7 @@ function cards(parent) {
 		<a class="card__title" href="#productCard">${productName}</a>
 		<div class="card__price">
 		<div class="card__price-text">${price}</div>
-			<span class="card__old-price"> ${oldPrice}</span>
+			 <span class="card__old-price"> ${oldPrice}</span>
 			<div class="sale">
 				<p class="sale__text">${sale}</p>
 			</div>
@@ -73,15 +82,17 @@ function cards(parent) {
 </div>`;
 
 
-			parentElement.append(element);
+			this.parent.append(element);
 
 			});
 
-			slider(parentElement);
+			this.slider(this.parent);
 
 	};
 
-	render();
+	};
+
+	new ProductCard(parent, slider).render();
 
 
 	const offSale = (parent, saleElement, saleContent) => {

@@ -6,9 +6,8 @@
 		contents.forEach(contents => {
 
 			const content = contents.querySelector('.card__item'),
-				conteiner = contents.querySelector('.slider__item'),
+
 				slides = contents.querySelectorAll('.slider__item'),
-				slider = contents.querySelector('.card__image'),
 				prev = contents.querySelector('.nav-prev'),
 				next = contents.querySelector('.nav-next'),
 				wrapper = contents.querySelector('.slider__wrapper'),
