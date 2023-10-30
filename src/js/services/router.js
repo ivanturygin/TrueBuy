@@ -1,12 +1,9 @@
 import cards from "../modules/cards";
-import {Cart, Form} from "../modules/cart";
+import {cart} from "../modules/cart";
 import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
 import {appState} from "./state";
 
 const urlPageTitle = '';
-
-const cart = new Cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter);
-const form = new Form(appState.cart);
 
 const routes = {
 
@@ -73,17 +70,14 @@ const router = async () => {
 
 if (route === routes.main){
 
-	cart.counterProduct();
 
 };
 
 if (route === routes.product) {
 
+cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
+
 	cards('.card');
-
-	cart.checkElements(document.querySelectorAll('.card__item'));
-
-	cart.counterProduct();
 
 };
 
@@ -92,11 +86,7 @@ if (route === routes.cart) {
 
 	const parentElement = document.querySelector('.cart__list');
 
-   cart.renderCart(parentElement);
-
-	cart.counter();
-
-	cart.removeProduct();
+	 cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route);
 
 	form.submit();
 

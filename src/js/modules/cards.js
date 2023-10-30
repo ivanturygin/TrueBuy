@@ -1,20 +1,12 @@
 import slider from "./slider";
 import {cardsProduct} from "../db";
-;
+
 
 function cards(parent) {
 
-	class ProductCard {
+	const parentElement = document.querySelector(parent);
 
-		constructor(parent, slider) {
-			
-			this.parent = document.querySelector(parent);
-			this.slider = slider;
-			
-			
-		}
-
-		render() {
+	const render = () => {
 
 				cardsProduct.forEach(({
 					img,
@@ -32,7 +24,6 @@ function cards(parent) {
 			element.dataset.id = `${id}`;
 
 			element.classList.add('card__item');
-
 
 			element.innerHTML = `<div class="card__image">
 
@@ -70,7 +61,7 @@ function cards(parent) {
 		<a class="card__title" href="#productCard">${productName}</a>
 		<div class="card__price">
 		<div class="card__price-text">${price}</div>
-			 <span class="card__old-price"> ${oldPrice}</span>
+			<span class="card__old-price"> ${oldPrice}</span>
 			<div class="sale">
 				<p class="sale__text">${sale}</p>
 			</div>
@@ -82,17 +73,15 @@ function cards(parent) {
 </div>`;
 
 
-			this.parent.append(element);
+			parentElement.append(element);
 
 			});
 
-			this.slider(this.parent);
+			slider(parentElement);
 
 	};
 
-	};
-
-	new ProductCard(parent, slider).render();
+	render();
 
 
 	const offSale = (parent, saleElement, saleContent) => {
