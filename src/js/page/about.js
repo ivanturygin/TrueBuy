@@ -1,4 +1,10 @@
-<div class="aboutUs">
+
+export function aboutPage () {
+
+	const page = document.createElement('div');
+	page.classList.add('aboutUs');
+
+	const contentPage = `
 <div class="conteiner">
 	<div class="aboutUs__inner">
 		<h3 class="aboutUs__title">O нас</h3>
@@ -21,5 +27,10 @@
 
 		</div>
 	</div>
-	</div>
-</div>
+	</div>`;
+
+	page.innerHTML= contentPage;
+
+	return page
+
+};

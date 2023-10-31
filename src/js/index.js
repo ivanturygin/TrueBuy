@@ -2,6 +2,7 @@ import {router} from "./services/router";
 import {server} from "./services/server";
 import {setState} from "./services/localStorageUtil";
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
 	setState();

@@ -1,4 +1,10 @@
-		<section class="section-top">
+
+export function mainPage(){
+
+	const page = document.createElement('div');
+	page.classList.add('main');
+
+	const content = `<section class="section-top">
 
 			<div class="conteiner">
 				<div class="section-top__inner">
@@ -173,7 +179,10 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section>`;
 
-	
+		page.innerHTML = content;
 
+		return page
+
+};

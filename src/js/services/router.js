@@ -2,6 +2,8 @@ import cards from "../modules/cards";
 import {cart, form} from "../modules/cart";
 import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
 import {appState} from "./state";
+import {aboutPage} from "../page/about";
+import {mainPage} from "../page/main";
 
 const urlPageTitle = '';
 
@@ -70,7 +72,12 @@ const router = async () => {
 
 			const parentElement = document.querySelector('.cart__list');
 
+			const app = document.querySelector('.content');
+
 if (route === routes.main){
+
+	app.append(mainPage());
+
 
 cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
 };
@@ -90,6 +97,10 @@ if (route === routes.cart) {
 
 	form(appState.cart);
 
+};
+
+if (route === routes.aboutUs){
+app.append(aboutPage());
 };
 
 };
