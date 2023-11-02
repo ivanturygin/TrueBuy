@@ -1,3 +1,4 @@
+import {cards} from "../components/cards";
 
 export function productPage(){
 
@@ -11,6 +12,10 @@ export function productPage(){
 </div>`;
 
 page.innerHTML = content;
+
+const element = page.querySelector('.card');
+
+element.append(cards());
 
 return page;
 };

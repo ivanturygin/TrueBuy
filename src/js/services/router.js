@@ -4,6 +4,7 @@ import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
 import {appState} from "./state";
 import {aboutPage} from "../page/about";
 import {mainPage} from "../page/main";
+import {productPage} from "../page/product";
 
 const urlPageTitle = '';
 
@@ -84,7 +85,7 @@ cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, par
 
 if (route === routes.product) {
 
-	cards('.card');
+	app.append(productPage());
 
 	cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
 

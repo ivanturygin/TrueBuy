@@ -2,7 +2,7 @@ import slider from "./slider";
 import {cardsProduct} from "../db";
 ;
 
-function cards(parent) {
+/*function cards(parent) {
 
 	class ProductCard {
 
@@ -124,4 +124,4 @@ function cards(parent) {
 	
 };
 
-export default cards;
+export default cards;*/
