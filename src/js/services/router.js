@@ -1,4 +1,4 @@
-import cards from "../modules/cards";
+import {cardsProduct} from "../db";
 import {cart, form} from "../modules/cart";
 import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
 import {appState} from "./state";
@@ -85,7 +85,7 @@ cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, par
 
 if (route === routes.product) {
 
-	app.append(productPage());
+	app.append(productPage(cardsProduct));
 
 	cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
 
