@@ -1,21 +1,16 @@
 
-	function slider(parent) {
-
-		const contents = parent.querySelectorAll('.card__item');
-
-		contents.forEach(contents => {
-
-			const content = contents.querySelector('.card__item'),
-
-				slides = contents.querySelectorAll('.slider__item'),
-				prev = contents.querySelector('.nav-prev'),
-				next = contents.querySelector('.nav-next'),
-				wrapper = contents.querySelector('.slider__wrapper'),
-				field = contents.querySelector('.slider__inner'),
+	function slider({parentElement, slide, prevArrow, nextArrow, wrapperElement, fieldSlides, navElement}) {
+		
+			const content = parentElement,
+				slides = content.querySelectorAll(slide),
+				prev = content.querySelector(prevArrow),
+				next = content.querySelector(nextArrow),
+				wrapper = content.querySelector(wrapperElement),
+				field = content.querySelector(fieldSlides),
 				width = window.getComputedStyle(wrapper).width,
-				nav = contents.querySelector('.slider__nav');
+				nav = content.querySelector(navElement);
 
-
+			
 			let slideIndex = 1;
 			let offset = 0;
 
@@ -112,8 +107,6 @@
 				return +str.replace(/\D/g, '')
 			};
 			
-		})
-
 	};
 
 export default slider;

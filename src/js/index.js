@@ -1,20 +1,18 @@
-import {router} from "./services/router";
-import {server} from "./services/server";
+import {router} from './services/router';
 import {setState} from "./services/localStorageUtil";
+import {render} from "./services/render";
 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	setState();
+setState();
 
-	window.addEventListener('hashchange',router);
+render.header();
 
-	router();
+render.pageConteiner();
 
-server('./../files/db.json').then(data => {
-		data.cards.forEach(element => {
-			dataBase = element
-		});
-	})
+render.footer();
+
+router.resolve();
 
 });

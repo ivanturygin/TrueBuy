@@ -1,7 +1,10 @@
-<footer class="footer">
-	<div class="conteiner">
-		<div class="footer__inner">
+export function footer() {
 
+	const footer = document.createElement('footer');
+	footer.classList.add('footer');
+
+	const content = `<div class="conteiner">
+		<div class="footer__inner">
 
 			<div class="footer__content">
 				<div class="footer__title">Свяжитесь с нами</div>
@@ -45,5 +48,9 @@
 				</ul>
 			</div>
 		</div>
-	</div>
-</footer>
+	</div>`;
+
+	footer.innerHTML = content;
+
+	return footer
+};

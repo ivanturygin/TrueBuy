@@ -1,110 +1,46 @@
-import {cardsProduct} from "../db";
-import {cart, form} from "../modules/cart";
-import {setProduct, getProduct, removeStorage} from "./localStorageUtil";
-import {appState} from "./state";
-import {aboutPage} from "../page/about";
-import {mainPage} from "../page/main";
-import {productPage} from "../page/product";
+import Navigo from "navigo";
+import {render} from "./render";
+import {pageContent} from "./render";
 
-const urlPageTitle = '';
+// навигация
 
-const routes = {
+export const router = new Navigo('/');
 
-	404: {
-		template: '',
-		title: '404 ' + urlPageTitle,
-		description: 'Page not found'
-	},
+router.on('/', () => {
 
-	main: {
-		template: './pages/main.html',
-		title: 'Home ' + urlPageTitle,
-		description: 'This is the homepage'
-	},
+	pageContent.innerHTML = '';
 
-	product: {
-		template: './pages/product.html',
-		title: 'Каталог ' + urlPageTitle,
-		description: 'This is the homepage'
-	},
+	render.main();
+});
 
-	productCard:{
-		template: './pages/product-card.html',
-			title: 'Товары' + urlPageTitle,
-			description: 'This is the homepage'
-	},
+router.on('/product', () => {
 
-	cart:{
-		template: './pages/cart.html',
-		title: 'Корзина ' + urlPageTitle,
-		description: 'This is the homepage'
-	},
+	pageContent.innerHTML = '';
 
-	aboutUs: {
-		template: './pages/aboutUs.html',
-		title: 'О нас' + urlPageTitle,
-		description: 'This is the homepage'
-	}
+	render.product();
 
-};
+});
 
-const router = async () => {
+router.on('/cart', () => {
 
-	let path = window.location.hash.replace('#', '');
+	pageContent.innerHTML = '';
 
-	const hash = window.location.hash;
+	render.product();
 
-	if (hash == "") {
-		path = 'main';
-	};
-
-	const route = routes[path] || routes[404];
-
-	const html = await fetch(route.template).then((data) => data.text());
-
-	const parent = document.querySelector('.content');
-
-	parent.innerHTML = html;
-
-	document.title = route.title;
-
-	document.querySelector('meta[name = "description"]')
-		.setAttribute('content', route.description);
-
-			const parentElement = document.querySelector('.cart__list');
-
-			const app = document.querySelector('.content');
-
-if (route === routes.main){
-
-	app.append(mainPage());
+});
 
 
-cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
-};
+router.on('/about', () => {
 
-if (route === routes.product) {
+	pageContent.innerHTML = '';
 
-	app.append(productPage(cardsProduct));
+	render.about();
 
-	cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
-
-};
+});
 
 
-if (route === routes.cart) {
+router.notFound(function (query) {
 
-	cart(setProduct, getProduct, removeStorage, appState.cart, appState.counter, parentElement, route.template);
+	console.error('Маршрут не найден:', query);
 
-	form(appState.cart);
-
-};
-
-if (route === routes.aboutUs){
-app.append(aboutPage());
-};
-
-};
-
-
-export {router};
+});

@@ -1,6 +1,7 @@
 import {cards} from "../components/cards";
 
-export function productPage(appState){
+
+export function productPage(cardsProduct){
 
 	const page = document.createElement('div');
 	page.classList.add('product');
@@ -15,7 +16,7 @@ page.innerHTML = content;
 
 const element = page.querySelector('.card');
 
-element.append(cards(appState.cart));
+element.append(cards(cardsProduct));
 
 return page;
 };

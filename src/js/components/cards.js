@@ -1,7 +1,9 @@
 
 export function cards(data){
 
-	console.log(data);
+	const productList = document.createElement('div');
+	      productList.classList.add('card__list');
+
 data.forEach(({
 	img,
 	productName,
@@ -11,12 +13,12 @@ data.forEach(({
 	id
 }) => {
 
+
 	const component = document.createElement('div');
-	component.classList.add('card-item');
+	component.classList.add('card__item');
 	component.dataset.id = `${id}`;
 
 	const content = `<div class="card__image">
-
 	<div class="slider">
 		<div class="slider__wrapper">
 			<div class="slider__nav">
@@ -51,22 +53,21 @@ data.forEach(({
 		<a class="card__title" href="#productCard">${productName}</a>
 		<div class="card__price">
 		<div class="card__price-text">${price}</div>
-			<span class="card__old-price">${oldPrice}</span>
-			<div class="sale">
-				<p class="sale__text">${sale}</p>
-			</div>
+			${typeof sale !== 'undefined'? `<div class="sale"><span class="sale__old-price">${oldPrice}</span><p class="sale__text">${sale}</p></div>`: ''}
 		</div>
 	</div>
 
 	<div class="button card__button"> <button data-cart class="button__btn card__button-btn"> В корзину </button>
 	</div>
-</div>`;
+</div>`
 
 
 component.innerHTML = content;
 
-return component
+productList.appendChild(component);
 
 });
+
+return productList
 
 };

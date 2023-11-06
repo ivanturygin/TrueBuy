@@ -35,5 +35,8 @@
   },
   "browserslist": [
     "last 5 versions"
-  ]
+  ],
+  "dependencies": {
+    "navigo": "^8.11.1"
+  }
 }
