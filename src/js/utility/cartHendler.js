@@ -1,4 +1,10 @@
+import {removeHendler} from './removeHendler';
+import {setProduct,getProduct,removeStorage,setState} from './localStorageUtil';
+import {appState} from '../services/state';
+
 export const cartUtil = {
+
+	// добавить товар в корзину
 
 	addProduct: ()=>{
 
@@ -25,11 +31,19 @@ export const cartUtil = {
 				};
 
 				card.classList.toggle("cart-add");
+
+				appState.cart.push(productInfo);
+
+				setProduct(productInfo);
+
 			}
 		};
 
 		window.addEventListener("click", hendleClick);
 
+		removeHendler(hendleClick);
+
 	},
+
 
 };

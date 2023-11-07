@@ -1,4 +1,4 @@
-import {appState} from "./state";
+import {appState} from "../services/state";
 
 const setState = () => {
 
@@ -49,4 +49,4 @@ for (let i = 0 ; i < products.length ; i++){
 	};
 }};
 
-export {setProduct, getProduct, removeStorage,setState};
+export {setProduct, getProduct, removeStorage, setState};

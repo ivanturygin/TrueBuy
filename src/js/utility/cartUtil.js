@@ -1,4 +1,4 @@
- function cartUtil(setProduct, getProduct, removeStorage, stateCart, stateCounter, parentElement, route) {
+/* function cartUtil(setProduct, getProduct, removeStorage, stateCart, stateCounter, parentElement, route) {
 
 	// отменяем обработчик события
 
@@ -566,4 +566,4 @@ function form(stateCart) {
 export {
 	cart,
 	form
-};
+};*/
