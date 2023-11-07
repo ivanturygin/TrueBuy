@@ -1,11 +1,11 @@
-import { appState } from "./state";
+import {appState} from "./state";
 
 const setState = () => {
 
 	let products = getProduct();
 
 	products.forEach((item) => {
-     
+
 		appState.cart.push(item);
 
 	});

@@ -4,9 +4,10 @@ import {cardsProduct} from "../db";
 import {mainPage} from "../page/main";
 import {productPage} from "../page/product";
 import {aboutPage} from "../page/about";
+import {cartPage} from "../page/cart";
 
 import slider from "../modules/slider";
-
+import {cartHendler, cartUtil} from "../utility/cartHendler"
 // ищем родительские элементы приложения
 
 const app = document.querySelector('.app');
@@ -71,6 +72,8 @@ export const render = {
 				navElement: '.slider__nav'
 			});
 		}
+
+		cartUtil.addProduct();
 	},
 
 	// страница о нас
@@ -80,6 +83,14 @@ export const render = {
 		pageContent.append(aboutPage());
 
 	},
+
+	// корзина
+
+		cart: () => {
+
+			pageContent.append(cartPage());
+
+		},
 
 
 };

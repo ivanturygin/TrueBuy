@@ -1,4 +1,4 @@
-import {cards} from "../components/cards";
+import {cardsItem} from "../components/cards-item";
 
 
 export function productPage(cardsProduct){
@@ -9,14 +9,14 @@ export function productPage(cardsProduct){
 	const content = `<div class="conteiner">
 
 	<div class="card"></div>
-	
+
 </div>`;
 
 page.innerHTML = content;
 
 const element = page.querySelector('.card');
 
-element.append(cards(cardsProduct));
+element.append(cardsItem(cardsProduct));
 
 return page;
 };

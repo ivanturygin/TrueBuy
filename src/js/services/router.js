@@ -21,20 +21,20 @@ router.on('/product', () => {
 
 });
 
-router.on('/cart', () => {
-
-	pageContent.innerHTML = '';
-
-	render.product();
-
-});
-
-
 router.on('/about', () => {
 
 	pageContent.innerHTML = '';
 
 	render.about();
+
+});
+
+
+router.on('/cart', () => {
+
+	pageContent.innerHTML = '';
+
+	render.cart();
 
 });
 

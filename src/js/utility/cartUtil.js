@@ -1,4 +1,4 @@
-function cart(setProduct, getProduct, removeStorage, stateCart, stateCounter, parentElement, route) {
+ function cartUtil(setProduct, getProduct, removeStorage, stateCart, stateCounter, parentElement, route) {
 
 	// отменяем обработчик события
 

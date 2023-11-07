@@ -1,5 +1,5 @@
 
-export function cards(data){
+export function cardsItem(data){
 
 	const productList = document.createElement('div');
 	      productList.classList.add('card__list');

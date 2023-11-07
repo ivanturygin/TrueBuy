@@ -1,4 +1,11 @@
-<div class="cart">
+
+export function cartPage(){
+
+	const cart = document.createElement('div');
+
+	cart.classList.add('cart');
+
+	const content = `
 	<div class="conteiner">
 		<div class="cart__inner">
 
@@ -63,4 +70,10 @@
 		</form>
 		</div>
 	</div>
-</div>
+	`;
+
+	cart.innerHTML = content;
+
+	return cart
+
+};
