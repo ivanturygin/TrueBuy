@@ -1,5 +1,5 @@
 
-export function cartPage(){
+export function cartPage(cartItem, noProduct, appState){
 
 	const cart = document.createElement('div');
 
@@ -12,11 +12,6 @@ export function cartPage(){
 			<div class="cart__top">
 
 				<div class="cart__list">
-
-					<div class="noproduct">
-						<img class="noproduct__img" src="./../../img/icons8-корзина-100.png" alt="корзина пуста">
-						<p class="noproduct__text">Корзина пуста</p>
-					</div>
 
 				</div>
 
@@ -73,6 +68,10 @@ export function cartPage(){
 	`;
 
 	cart.innerHTML = content;
+
+	const cartList = cart.querySelector('.cart__list');
+
+	console.log(cartItem.renderItem(appState));
 
 	return cart
 

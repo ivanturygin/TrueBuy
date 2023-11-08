@@ -4,10 +4,13 @@ import {cardsProduct} from "../db";
 import {mainPage} from "../page/main";
 import {productPage} from "../page/product";
 import {aboutPage} from "../page/about";
-import {cartPage} from "../page/cart";
+import {cartPage} from "../page/cart-page";
+import {cart} from "../components/cart";
+import {noProduct} from "../components/no-product";
 
 import slider from "../modules/slider";
-import {cartHendler, cartUtil} from "../utility/cartHendler"
+import {appState} from "./state";
+
 // ищем родительские элементы приложения
 
 const app = document.querySelector('.app');
@@ -73,7 +76,7 @@ export const render = {
 			});
 		}
 
-		cartUtil.addProduct();
+		cart.addProduct(appState);
 	},
 
 	// страница о нас
@@ -88,7 +91,7 @@ export const render = {
 
 		cart: () => {
 
-			pageContent.append(cartPage());
+			pageContent.append(cartPage(cart, noProduct, appState));
 
 		},
 
