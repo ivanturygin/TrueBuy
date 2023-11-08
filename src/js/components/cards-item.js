@@ -2,7 +2,7 @@
 export function cardsItem(data){
 
 	const productList = document.createElement('div');
-	      productList.classList.add('card__list');
+	productList.classList.add('card__list');
 
 data.forEach(({
 	img,
@@ -68,6 +68,8 @@ productList.appendChild(component);
 
 });
 
-return productList
+const outer = productList.outerHTML;
+
+return outer
 
 };

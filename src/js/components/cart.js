@@ -45,27 +45,39 @@ export const cart = {
 
 	},
 
-// удалить товар из корзины
+// удалить карточку товара из корзины
 
-	removeProduct: (element, id) => {
-			const remove = (id) => {
-				removeStorage(id);
+	removeItem: () => {
 
-				for (let i = 0; i < stateCart.length; i++) {
-					if (stateCart[i].id === id) {
-						stateCart.splice(i, 1);
-					}
+	const handleRemoveProduct = (e) => {
 
-					counterProduct();
-				}
-			}
-		},
+		if (e.target.dataset.action === "del") {
+			const elementParent = e.target.closest(".cart__item");
+
+			const id = elementParent.getAttribute("data-id");
+
+			removeStorage(id);
+
+			elementParent.remove();
+
+		}
+	};
+
+	window.addEventListener("click", handleRemoveProduct);
+
+	removeHendler(handleRemoveProduct);
+
+	},
+
+
+		// отрисовываем добавленный товар
 
 		renderItem: (appState) => {
 
 			let data = appState.cart;
 
-			const a = document.createElement('div');
+			const cartList = document.createElement('div');
+			cartList.classList.add('cart__list');
 
 			data.forEach(({
 				id,
@@ -74,7 +86,6 @@ export const cart = {
 				price
 			}) => {
 
-				console.log(id);
 				const elementItem = document.createElement("div");
 
 				elementItem.classList.add("cart__item");
@@ -116,10 +127,12 @@ export const cart = {
 
 				elementItem.innerHTML = content;
 
-				a.appendChild(elementItem);
+				cartList.appendChild(elementItem);
 			});
 
-			return a
+			const outer = cartList.outerHTML;
+
+			return outer
 
 		},
 

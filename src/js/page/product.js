@@ -8,15 +8,15 @@ export function productPage(cardsProduct){
 
 	const content = `<div class="conteiner">
 
-	<div class="card"></div>
+	<div class="card">
+
+	${cardsItem(cardsProduct)}
+
+	</div>
 
 </div>`;
 
 page.innerHTML = content;
-
-const element = page.querySelector('.card');
-
-element.append(cardsItem(cardsProduct));
 
 return page;
 };

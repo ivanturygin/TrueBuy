@@ -1,19 +1,17 @@
 
-export function cartPage(cartItem, noProduct, appState){
+export function cartPage(cart, noProduct, appState){
 
-	const cart = document.createElement('div');
+	const element = document.createElement('div');
 
-	cart.classList.add('cart');
+	element.classList.add('cart');
 
 	const content = `
 	<div class="conteiner">
 		<div class="cart__inner">
 
 			<div class="cart__top">
-
-				<div class="cart__list">
-
-				</div>
+			
+			${cart.renderItem(appState)}
 
 				<div class="cart__price">
 
@@ -67,12 +65,8 @@ export function cartPage(cartItem, noProduct, appState){
 	</div>
 	`;
 
-	cart.innerHTML = content;
+	element.innerHTML = content;
 
-	const cartList = cart.querySelector('.cart__list');
-
-	console.log(cartItem.renderItem(appState));
-
-	return cart
+	return element
 
 };

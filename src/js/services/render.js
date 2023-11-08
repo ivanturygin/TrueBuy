@@ -93,6 +93,8 @@ export const render = {
 
 			pageContent.append(cartPage(cart, noProduct, appState));
 
+			cart.removeItem();
+
 		},
 
 
