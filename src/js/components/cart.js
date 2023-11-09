@@ -2,13 +2,13 @@ import {removeHendler} from '../utility/removeHendler';
 import {setProduct,getProduct,removeStorage,setState} from '../utility/localStorageUtil';
 
 
-export const cart = {
 
+export const cart = {
 	// добавить товар в корзину
 
 	addProduct: (appState)=>{
 
-		const hendleClick = (e) => {
+		const handleClick = (e) => {
 			if (e.target.hasAttribute("data-cart")) {
 				const card = e.target.closest(".card__item");
 
@@ -37,12 +37,11 @@ export const cart = {
 				setProduct(productInfo);
 
 			}
+
 		};
 
-		removeHendler(hendleClick);
 
-		window.addEventListener("click", hendleClick);
-
+	window.addEventListener("click", handleClick);
 
 	},
 

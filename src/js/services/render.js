@@ -10,6 +10,7 @@ import {noProduct} from "../components/no-product";
 
 import slider from "../modules/slider";
 import {appState} from "./state";
+import {removeHendler} from "../utility/removeHendler";
 
 // ищем родительские элементы приложения
 
@@ -77,6 +78,7 @@ export const render = {
 		}
 
 		cart.addProduct(appState);
+
 	},
 
 	// страница о нас
@@ -90,6 +92,8 @@ export const render = {
 	// корзина
 
 		cart: () => {
+
+			removeHendler(appState.handler)
 
 			pageContent.append(cartPage(cart, noProduct, appState));
 
