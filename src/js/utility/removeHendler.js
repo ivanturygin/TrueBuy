@@ -1,11 +1,16 @@
+import {router} from '../services/router'
 
 export function removeHendler(action) {
 
-	window.addEventListener("popstate", () => {
+	router.hooks({
 
-		console.log(action);
+		after: console.log('hello router')
+	});
 
-		window.removeEventListener("click", action);
+	window.addEventListener("popstate", (e) => {
+
+		window.removeEventListener("click", action)
+
 
 	});
 

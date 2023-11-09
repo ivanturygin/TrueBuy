@@ -39,9 +39,10 @@ export const cart = {
 			}
 		};
 
+		removeHendler(hendleClick);
+
 		window.addEventListener("click", hendleClick);
 
-		removeHendler(hendleClick);
 
 	},
 
