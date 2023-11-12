@@ -1,7 +1,4 @@
-import {removeHendler} from '../utility/removeHendler';
 import {setProduct,getProduct,removeStorage,setState} from '../utility/localStorageUtil';
-
-
 
 export const cart = {
 	// добавить товар в корзину
@@ -40,8 +37,11 @@ export const cart = {
 
 		};
 
-
 	window.addEventListener("click", handleClick);
+
+	  return {
+	  	handleClick: handleClick
+	  }
 
 	},
 
@@ -65,8 +65,9 @@ export const cart = {
 
 	window.addEventListener("click", handleRemoveProduct);
 
-	removeHendler(handleRemoveProduct);
-
+return {
+	handleRemoveProduct: handleRemoveProduct
+}
 	},
 
 

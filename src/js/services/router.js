@@ -1,10 +1,43 @@
 import Navigo from "navigo";
 import {render} from "./render";
 import {pageContent} from "./render";
+import {removeHandler} from "../utility/removeHandler";
+import {cart} from "../components/cart";
+import {appState} from "./state";
 
 // навигация
 
 export const router = new Navigo('/');
+
+// снимаем обработчики событий
+
+	router.hooks({
+
+		before: ((done, params) => {
+
+			if (params.url === 'product') {
+
+				console.log('product');
+
+			removeHandler(appState.handler.handleClick)
+
+			};
+
+			if (params.url === 'cart') {
+
+				console.log('cart');
+
+				removeHandler(appState.handler.handleClick)
+
+			};
+
+			done();
+
+		})
+
+	});
+
+// route главная
 
 router.on('/', () => {
 
@@ -13,13 +46,17 @@ router.on('/', () => {
 	render.main();
 });
 
+// route товары
+
 router.on('/product', () => {
 
 	pageContent.innerHTML = '';
 
-	render.product();
+   render.product();
 
 });
+
+// route о нас
 
 router.on('/about', () => {
 
@@ -29,6 +66,7 @@ router.on('/about', () => {
 
 });
 
+// route корзина
 
 router.on('/cart', () => {
 
@@ -38,9 +76,15 @@ router.on('/cart', () => {
 
 });
 
+// route страница не найдена
 
 router.notFound(function (query) {
 
 	console.error('Маршрут не найден:', query);
 
 });
+
+
+
+
+
