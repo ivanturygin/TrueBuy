@@ -15,21 +15,7 @@ export const router = new Navigo('/');
 
 		before: ((done, params) => {
 
-			if (params.url === 'product') {
-
-				console.log('product');
-
-			removeHandler(appState.handler.handleClick)
-
-			};
-
-			if (params.url === 'cart') {
-
-				console.log('cart');
-
-				removeHandler(appState.handler.handleClick)
-
-			};
+			removeHandler(appState.handler)
 
 			done();
 

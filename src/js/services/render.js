@@ -96,7 +96,7 @@ export const render = {
 
 			pageContent.append(cartPage(cart, noProduct, appState));
 
-			appState.handler = cart.handleRemoveProduct();
+			appState.handler = cart.removeItem();
 
 		},
 

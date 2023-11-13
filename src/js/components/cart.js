@@ -39,9 +39,9 @@ export const cart = {
 
 	window.addEventListener("click", handleClick);
 
-	  return {
-	  	handleClick: handleClick
-	  }
+	  return handleClick
+	  
+	  
 
 	},
 
@@ -65,9 +65,9 @@ export const cart = {
 
 	window.addEventListener("click", handleRemoveProduct);
 
-return {
-	handleRemoveProduct: handleRemoveProduct
-}
+return handleRemoveProduct
+
+
 	},
 
 

@@ -1,9 +1,11 @@
 
 export function removeHandler(action) {
 
-	console.log(action);
+if(action){
 
 window.removeEventListener("click", action);
+
+}
 
 };
 
