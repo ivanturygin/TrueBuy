@@ -73,22 +73,41 @@ export const formUtil = {
 
 validation: function(form) {
 
-
 	const formItem = form.querySelectorAll(".form__input");
 
-	
+	let trigger = false;
+
+	let errors = false;
+
 	const removeInputError = (parentInput) => {
 		parentInput.classList.remove("_error");
 	};
 
+// выводим текст ошибки
 
-		const errorInput = (text, errorText, parentInput) => {
+		const inputError = (text, errorText, parentInput) => {
 		
 				parentInput.classList.add("_error");
 				errorText.classList.add("_on");
 				errorText.textContent = text;
+
+				errors = true;
 			
 		};
+
+// обработчик события focus
+
+			const focusElement = (e) => {
+
+				trigger = true;
+
+         formLoop();
+
+			};
+
+// цикл валидации
+
+const formLoop = () => {
 
 	for (let i = 0; i < formItem.length; i++) {
 
@@ -100,7 +119,17 @@ validation: function(form) {
 
 		const errorText = element.querySelector(".error-text");
 
+      input.addEventListener('focus', focusElement)
 
+
+		if(trigger){
+
+			parentInput.classList.remove("_error");
+			errorText.classList.remove("_on");
+
+			errors = false;
+
+		}else{
 
 			if (input.classList.contains("_name")) {
 
@@ -108,17 +137,17 @@ validation: function(form) {
 
 				if (!testName) {
 
-					errorInput("Введите корректное имя", errorText, parentInput);
+					inputError("Введите корректное имя", errorText, parentInput);
 
 				};
 
 			} else if (input.classList.contains("_tel")) {
 
-				const testTel = /^([+]?[0-9\s-\(\)]{3,25})*$/.test(input.value);
+				const testTel = /^(\+7|8)?[0-9]{10}$/.test(input.value);
 
 				if (!testTel) {
 
-					errorInput("Введите корректный номер", errorText, parentInput);
+					inputError("Введите корректный номер", errorText, parentInput);
 
 				};
 
@@ -128,7 +157,7 @@ validation: function(form) {
 
 				if (!testEmale) {
 
-					errorInput("Введите корректный email", errorText, parentInput);
+					inputError("Введите корректный email", errorText, parentInput);
 
 				};
 
@@ -136,16 +165,25 @@ validation: function(form) {
 
 				if (input.value === "") {
 
-					errorInput("Введите корректный адрес", errorText, parentInput);
+					inputError("Введите корректный адрес", errorText, parentInput);
 
 				}
 			
 		}
 
+	};
+
 	}
 
+};
+
+formLoop();
+
+if(!errors){
+
+	console.log('форма отправлена');
+};
+
 },
-
-
 
 };
