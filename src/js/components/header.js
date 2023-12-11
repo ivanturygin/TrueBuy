@@ -1,3 +1,5 @@
+import {counter} from "./counter";
+
 export function header (){
 
 	const header = document.createElement('header');
@@ -30,9 +32,7 @@ export function header (){
 
 			<div class="header__icon">
 				<button class="header__buttom">
-					<div class="count">
-						<span class="count__text"></span>
-					</div>
+					${counter()}
 					<a class="header__link" href = "/cart" data-navigo>
 					<img class="icon" src="../../img/icon/Group.png" alt="logo">
 					</a>
@@ -47,7 +47,8 @@ export function header (){
 		</div>
 	</div>`;
 
-	header.innerHTML = content;
+
+	header.insertAdjacentHTML('afterbegin', content)
 
 	return header
 };

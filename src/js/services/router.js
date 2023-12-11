@@ -4,6 +4,7 @@ import {pageContent} from "./render";
 import {removeHandler} from "../utility/removeHandler";
 import {cart} from "../components/cart";
 import {appState} from "./state";
+import {checking} from "../utility/checking_elements";
 
 // навигация
 
@@ -13,9 +14,9 @@ export const router = new Navigo('/');
 
 	router.hooks({
 
-		before: ((done, params) => {
+		before: ((done) => {
 
-			removeHandler(appState.handler)
+			removeHandler(appState.handler);
 
 			done();
 
@@ -23,6 +24,7 @@ export const router = new Navigo('/');
 
 	});
 
+	
 // route главная
 
 router.on('/', () => {
@@ -39,6 +41,8 @@ router.on('/product', () => {
 	pageContent.innerHTML = '';
 
    render.product();
+
+   checking.items('.card__item');
 
 });
 
@@ -59,6 +63,10 @@ router.on('/cart', () => {
 	pageContent.innerHTML = '';
 
 	render.cart();
+
+  // checking.items('.cart__item', params.url)
+
+checking.cartCount('.caunter__caunt');
 
 });
 

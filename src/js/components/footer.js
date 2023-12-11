@@ -50,7 +50,8 @@ export function footer() {
 		</div>
 	</div>`;
 
-	footer.innerHTML = content;
+
+	footer.insertAdjacentHTML('afterbegin', content)
 
 	return footer
 };

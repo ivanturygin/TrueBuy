@@ -7,9 +7,12 @@ import {aboutPage} from "../page/about";
 import {cartPage} from "../page/cart-page";
 import {cart} from "../components/cart";
 import {noProduct} from "../components/no-product";
+import {formUtil} from "../components/form"
 
+import {counterProduct} from "../components/counter";
 import slider from "../modules/slider";
 import {appState} from "./state";
+
 
 
 // ищем родительские элементы приложения
@@ -37,6 +40,8 @@ export const render = {
 	header: ()=> {
 
 			app.append(header());
+
+			counterProduct(appState);
 	},
 
 	// подвал сайта
@@ -77,9 +82,8 @@ export const render = {
 			});
 		}
 
-	appState.handler = cart.addProduct(appState);
+	appState.handler = cart.addProduct(appState, counterProduct);
 
-	
 	},
 
 	// страница о нас
@@ -94,9 +98,15 @@ export const render = {
 
 		cart: () => {
 
-			pageContent.append(cartPage(cart, noProduct, appState));
+			pageContent.append(cartPage(cart, noProduct));
 
-			appState.handler = cart.removeItem();
+			appState.handler = cart.removeItem(counterProduct);
+
+			 formUtil.submit();
+
+			cart.counter(appState);
+
+			cart.totalPrice();
 
 		},
 

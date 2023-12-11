@@ -181,7 +181,9 @@ export function mainPage(){
 			</div>
 		</section>`;
 
-		page.innerHTML = content;
+
+
+		page.insertAdjacentHTML('afterbegin', content)
 
 		return page
 

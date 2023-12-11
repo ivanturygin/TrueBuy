@@ -29,7 +29,7 @@ export function aboutPage () {
 	</div>
 	</div>`;
 
-	page.innerHTML= contentPage;
+		page.insertAdjacentHTML('afterbegin', contentPage)
 
 	return page
 

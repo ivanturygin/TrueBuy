@@ -62,7 +62,7 @@ data.forEach(({
 </div>`
 
 
-component.innerHTML = content;
+component.insertAdjacentHTML('afterbegin', content)
 
 productList.appendChild(component);
 

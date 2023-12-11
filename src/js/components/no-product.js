@@ -12,6 +12,8 @@ export function noProduct () {
 
 element.innerHTML = content;
 
-return element
+const outer = element.outerHTML;
+
+return outer
 
 };

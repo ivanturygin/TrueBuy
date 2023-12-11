@@ -16,7 +16,8 @@ export function productPage(cardsProduct){
 
 </div>`;
 
-page.innerHTML = content;
+
+	page.insertAdjacentHTML('afterbegin', content)
 
 return page;
 };
