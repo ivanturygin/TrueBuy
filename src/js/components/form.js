@@ -1,6 +1,6 @@
 export function form() {
 
-	const elementForm = document.createElement('div');
+	const elementForm = document.createElement('form');
 
 	elementForm.classList.add('form','cart__form');
 
@@ -62,14 +62,90 @@ export const formUtil = {
 
 			const form = document.querySelector(".form");
 
-			console.log(form);
-
 			form.addEventListener("submit", (event) => {
 
 						event.preventDefault();
 
-						console.log('hello form');
+						this.validation(form);
 					
 	});
 },
+
+validation: function(form) {
+
+
+	const formItem = form.querySelectorAll(".form__input");
+
+	
+	const removeInputError = (parentInput) => {
+		parentInput.classList.remove("_error");
+	};
+
+
+		const errorInput = (text, errorText, parentInput) => {
+		
+				parentInput.classList.add("_error");
+				errorText.classList.add("_on");
+				errorText.textContent = text;
+			
+		};
+
+	for (let i = 0; i < formItem.length; i++) {
+
+	const element = formItem[i];
+
+		const input = element.querySelector(".form__input-inp");
+
+		const parentInput = element.querySelector(".form__input-text");
+
+		const errorText = element.querySelector(".error-text");
+
+
+
+			if (input.classList.contains("_name")) {
+
+				const testName = /\D/.test(input.value);
+
+				if (!testName) {
+
+					errorInput("Введите корректное имя", errorText, parentInput);
+
+				};
+
+			} else if (input.classList.contains("_tel")) {
+
+				const testTel = /^([+]?[0-9\s-\(\)]{3,25})*$/.test(input.value);
+
+				if (!testTel) {
+
+					errorInput("Введите корректный номер", errorText, parentInput);
+
+				};
+
+			} else if (input.classList.contains("_email")) {
+
+				const testEmale = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(input.value);
+
+				if (!testEmale) {
+
+					errorInput("Введите корректный email", errorText, parentInput);
+
+				};
+
+			} else if (input.classList.contains("_adds")) {
+
+				if (input.value === "") {
+
+					errorInput("Введите корректный адрес", errorText, parentInput);
+
+				}
+			
+		}
+
+	}
+
+},
+
+
+
 };

@@ -114,8 +114,6 @@ return handleRemoveProduct
 					let totalPrice = appState.cart.reduce((total, item) => {
 						const pcs = item.pcs;
 
-						console.log(pcs);
-
 						if (typeof item.price === "number") {
 							return total + item.price;
 						} else if (typeof item.price === "string") {
