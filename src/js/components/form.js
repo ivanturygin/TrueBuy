@@ -62,13 +62,34 @@ export const formUtil = {
 
 			const form = document.querySelector(".form");
 
+			this.storage(form);
+
 			form.addEventListener("submit", (event) => {
 
 						event.preventDefault();
-
+						
 						this.validation(form);
 					
 	});
+},
+
+storage: function(form){
+
+	const formItem = form.querySelectorAll(".form__input");
+
+	formItem.forEach(element => {
+		
+		const input = element.querySelector(".form__input-inp");
+
+		input.addEventListener('change', () => {
+
+			console.log(input.value);
+
+		})
+
+	});
+
+	
 },
 
 validation: function(form) {
@@ -79,9 +100,6 @@ validation: function(form) {
 
 	let errors = false;
 
-	const removeInputError = (parentInput) => {
-		parentInput.classList.remove("_error");
-	};
 
 // выводим текст ошибки
 
