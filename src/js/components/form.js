@@ -69,27 +69,74 @@ export const formUtil = {
 						event.preventDefault();
 						
 						this.validation(form);
-					
+
+						
 	});
 },
+
+// сохраняем введенные данные формы
 
 storage: function(form){
 
 	const formItem = form.querySelectorAll(".form__input");
 
+	let setForm;
+
+	let getForm = localStorage.getItem('form');
+
+	getForm = JSON.parse(getForm);
+
+if (getForm === null){
+
+	setForm = {};
+
+}else{
+
+	setForm = getForm;
+
+
+	for (let key in setForm){
+
+		let nameElement = '_' + key;
+
+		let elementValue = setForm[key];
+
+		formItem.forEach(element => {
+
+			const input = element.querySelector(".form__input-inp");
+
+			if (input.classList.contains(nameElement)) {
+
+				input.value = elementValue;
+
+			};
+
+			
+		});
+
+	};
+
+};
+
+
 	formItem.forEach(element => {
 		
 		const input = element.querySelector(".form__input-inp");
 
-		input.addEventListener('change', () => {
+		input.addEventListener('change', (e) => {
 
-			console.log(input.value);
+			let nameKey = e.target.classList[1];
+
+			nameKey = nameKey.replace(/_/g, "");
+
+		setForm[nameKey] = e.target.value;
+
+		localStorage.setItem('form', JSON.stringify(setForm))
 
 		})
 
 	});
 
-	
 },
 
 validation: function(form) {
@@ -200,6 +247,10 @@ formLoop();
 if(!errors){
 
 	console.log('форма отправлена');
+
+	localStorage.clear();
+
+	form.reset();
 };
 
 },
