@@ -49,7 +49,7 @@ data.forEach(({
 </div>
 
 <div class="card__content">
-	<div class="card__content-text">
+	<div class="card__content-top">
 		<a class="card__title" href="#productCard">${productName}</a>
 		<div class="card__price">
 		<div class="card__price-text">${price}</div>
@@ -57,8 +57,26 @@ data.forEach(({
 		</div>
 	</div>
 
-	<div class="button card__button"> <button data-cart class="button__btn card__button-btn"> В корзину </button>
+<div class="card__content-bottom">
+
+	<div class="product-color"> 
+
+	<div class="product-color__item product-color__item_on" data-color="black"><img src="../../img/color/4667679.jpg" alt="черный"></div>
+	<div class="product-color__item" data-color="white"><img src="../../img/color/4667682.jpg" alt="белый"></div>
+	<div class="product-color__item" data-color="gray"><img src="../../img/color/4667688.jpg" alt="серый"></div>
+	<div class="product-color__item" data-color="beige"><img src="../../img/color/4667689.jpg" alt="бежевый"></div>
+
 	</div>
+
+	<div class="product-details">
+
+	</div>
+
+	<div class="button ">
+		<button data-cart class="button__btn card__button-btn"> В корзину </button>
+	</div>
+
+
 </div>`
 
 
@@ -73,3 +91,44 @@ const outer = productList.outerHTML;
 return outer
 
 };
+
+
+export const lightSelection = () => {
+
+	const productColor = document.querySelectorAll('.product-color__item');
+
+	productColor.forEach(item => {
+
+
+		item.addEventListener('click', (e) => {
+
+		const elementParent = e.target.closest('.product-color');
+
+		const itemColor = elementParent.querySelectorAll('.product-color__item');
+
+		const imgColor = elementParent.querySelector('img');
+
+		itemColor.forEach( item => {
+
+		item.classList.remove('product-color__item_on');
+
+		});
+
+
+
+		if(imgColor){
+
+		const imgParent = e.target.closest('.product-color__item');
+
+		imgParent.classList.add('product-color__item_on');
+
+		};
+
+
+
+
+		})
+	} )
+
+
+}

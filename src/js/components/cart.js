@@ -17,7 +17,10 @@ export const cart = {
 				const id = card.getAttribute("data-id"),
 					img = card.querySelector(".slider__img").getAttribute("src"),
 					title = card.querySelector(".card__title").textContent,
-					price = card.querySelector(".card__price-text").textContent;
+					price = card.querySelector(".card__price-text").textContent,
+					color = card.querySelector('.product-color__item_on').dataset.color;
+			
+					console.log(color);
 
 				const productInfo = {
 					id: id,
@@ -29,6 +32,8 @@ export const cart = {
 					price: price,
 
 					pcs: 1,
+
+					color: color
 				};
 
 
@@ -226,7 +231,8 @@ counter: function(appState){
 			id,
 			img,
 			title,
-			price
+			price,
+			color
 		}) => {
 
 			const elementItem = document.createElement("div");
@@ -251,6 +257,7 @@ counter: function(appState){
                		<div class="cart__item-title">${title}</div>
                		<div class="cart__item-saze">Размеры: 220 см x 103 см x 86 см</div>
                		<div class="cart__item-textile">Ткань: <span>Ultra Coral велюр</span></div>
+							<div class="cart__item-textile">Цвет: <span>${color}</span></div>
 
                		<div class="cart__item-bottom">
                			<div class="caunter">

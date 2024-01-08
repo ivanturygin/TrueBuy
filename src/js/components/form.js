@@ -1,12 +1,12 @@
-export function form() {
+export function form(appState) {
 
 	const elementForm = document.createElement('form');
 
 	elementForm.classList.add('form','cart__form');
 
-	elementForm.setAttribute('action', './../../file/sandmail.php');
-
 	elementForm.setAttribute('method', 'post');
+
+	elementForm.setAttribute('action', './../../file/sandmail.php');
 
 	elementForm.setAttribute('enctype', 'multipart/form-data');
 
@@ -58,7 +58,7 @@ export function form() {
 
 export const formUtil = {
 
-	submit: function(){
+	submit: function(appState){
 
 			const form = document.querySelector(".form");
 
@@ -68,10 +68,45 @@ export const formUtil = {
 
 						event.preventDefault();
 						
-						this.validation(form);
+						this.validation(form, appState);
 
-						
 	});
+},
+
+// отправляем данные заказа на почту
+
+sendData: async function(form, appState) {
+
+	const data = new FormData(form);
+
+	const productData = appState.cart;
+
+	 data.append('productData', JSON.stringify(productData));
+
+	fetch("/files/sandmail.php", {
+			method: "POST",
+			body: data,
+		})
+
+		.then((response) => {
+			if (response.ok) {
+				console.log("данные отправлены");
+				return response.text();
+			}
+			throw new Error("Ответ сети был неудовлетворительным");
+		})
+
+		.then((data) => {
+
+			console.log(data);
+
+		})
+
+		.catch((error) => {
+
+			console.error("Возникла проблема с операцией получения данных:", error);
+
+		});
 },
 
 // сохраняем введенные данные формы
@@ -139,7 +174,7 @@ if (getForm === null){
 
 },
 
-validation: function(form) {
+validation: function(form, appState) {
 
 	const formItem = form.querySelectorAll(".form__input");
 
@@ -247,6 +282,8 @@ formLoop();
 if(!errors){
 
 	console.log('форма отправлена');
+
+this.sendData(form, appState);
 
 	localStorage.clear();
 

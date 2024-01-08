@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -7,42 +8,68 @@ require './phpmailer/src/PHPMailer.php';
 require './phpmailer/src/SMTP.php';
 require './phpmailer/src/Exception.php';
 
-// Проверяем, были ли получены данные через POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mail = new PHPMailer(true);
+// Получение данных из формы
+$name = $_POST['name'];
+$tel = $_POST['tel'];
+$email = $_POST['email'];
+$adds = $_POST['adds'];
+$productDataJson = $_POST['productData'];
 
-    try {
-        // Настройки сервера SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Замените на адрес вашего SMTP-сервера
-        $mail->SMTPAuth = true;
-        $mail->Username = 'turyginkovrov@gmail.com'; // Замените на ваше имя пользователя SMTP
-        $mail->Password = 'treq oiiz khur gsja'; // Замените на ваш пароль SMTP
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Используйте PHPMailer::ENCRYPTION_SMTPS, если требуется SSL
-        $mail->Port = 587; // Порт для STARTTLS (или 465 для SMTPS)
+$productData = json_decode($productDataJson, true);
 
-        // Получение данных из POST-запроса
-        $name = $_POST['name'];
-        $tel = $_POST['tel'];
-        $email = $_POST['email'];
-		  $adds = $_POST['adds'];
+// Создание объекта PHPMailer
+$mail = new PHPMailer(true);
 
-        // Отправитель и получатель
-        $mail->setFrom('turyginkovrov@gmail.com', 'Your Name');
-        $mail->addAddress($email); // Используем введенный email как адрес получателя
+try {
+    // Настройки SMTP (замените на свои данные)
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'turyginkovrov@gmail.com';
+    $mail->Password = 'treq oiiz khur gsja';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-        // Тело письма
-        $mail->isHTML(true);
-        $mail->Subject = $name;
-        $mail->Body = $emale;
+        // Установка кодировки символов
+    $mail->CharSet = 'UTF-8';
 
-        // Отправка письма
-        $mail->send();
-        echo 'Письмо успешно отправлено';
-    } catch (Exception $e) {
-        echo 'Сообщение не было отправлено. Причина ошибки: ' . $mail->ErrorInfo;
+    // Отправка письма
+    $mail->setFrom('turyginkovrov@gmail.com', 'TrueBuy');
+    $mail->addAddress('turyginkovrov@gmail.com'); // Адрес получателя
+    $mail->Subject = 'TrueBuy';
+
+    // Тело письма
+ $body = '<html><body>'.
+
+            '<div style="margin-bottom: 15px;"><strong>Заказ №:</strong> ' . '</div>' .
+
+            '<div style="margin-bottom: 10px;"><strong>Имя клиента:</strong> ' . $name . '</div>' .
+
+            '<div style="margin-bottom: 10px;"><strong>Телефон:</strong> ' . $tel . '</div>' .
+
+            '<div style="margin-bottom: 10px;"><strong>Email:</strong> ' . $email . '</div>' .
+
+            '<div style="margin-bottom: 30px;"><strong>Адрес:</strong> ' . $adds . '</div>';
+
+    // Добавление данных о продуктах в тело письма
+    foreach ($productData as $product) {
+        $body .= '<div style="margin-bottom: 10px;"><strong>ID товара:</strong> ' . $product['id'] . '</div>' .
+                 '<div style="margin-bottom: 10px;"><strong>Наименование товара:</strong> ' . $product['title'] . '</div>' .
+                '<div style="margin-bottom: 10px;"><strong>Цвет:</strong> ' . $product[''] . '</div>' .
+                 '<div style="margin-bottom: 10px;"><strong>Количество:</strong> ' . $product['pcs'] . '</div>' .
+                 '<div style="margin-bottom: 30px;"><strong>Цена:</strong> ' . $product['price'] . '</div>';
     }
-} else {
-    echo 'Данные не получены';
+
+    $body .= '</body></html>';
+
+    $mail->msgHTML($body);
+           
+    $mail->send();
+    
+    // Ответ на запрос
+    echo json_encode(['status' => 'success', 'message' => 'Сообщение успешно отправлено']);
+} catch (Exception $e) {
+    // Обработка ошибки
+    echo json_encode(['status' => 'error', 'message' => 'Ошибка отправки сообщения: ' . $mail->ErrorInfo]);
 }
 ?>

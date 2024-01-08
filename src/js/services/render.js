@@ -12,6 +12,7 @@ import {formUtil} from "../components/form"
 import {counterProduct} from "../components/counter";
 import slider from "../modules/slider";
 import {appState} from "./state";
+import {lightSelection} from "../components/cards-item";
 
 
 
@@ -82,6 +83,8 @@ export const render = {
 			});
 		}
 
+		lightSelection();
+
 	appState.handler = cart.addProduct(appState, counterProduct);
 
 	},
@@ -102,7 +105,7 @@ export const render = {
 
 			appState.handler = cart.removeItem(counterProduct);
 
-			 formUtil.submit();
+			 formUtil.submit(appState);
 
 			cart.counter(appState);
 
