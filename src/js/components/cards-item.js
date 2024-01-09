@@ -10,7 +10,8 @@ data.forEach(({
 	price,
 	oldPrice,
 	sale,
-	id
+	id,
+	color,
 }) => {
 
 
@@ -60,11 +61,11 @@ data.forEach(({
 <div class="card__content-bottom">
 
 	<div class="product-color"> 
-
-	<div class="product-color__item product-color__item_on" data-color="black"><img src="../../img/color/4667679.jpg" alt="черный"></div>
-	<div class="product-color__item" data-color="white"><img src="../../img/color/4667682.jpg" alt="белый"></div>
-	<div class="product-color__item" data-color="gray"><img src="../../img/color/4667688.jpg" alt="серый"></div>
-	<div class="product-color__item" data-color="beige"><img src="../../img/color/4667689.jpg" alt="бежевый"></div>
+	   ${color.map(colorPath =>`
+          <div class="product-color__item" data-color="${getColorName(colorPath)}">
+            <img class="product-color__img" src="${colorPath}" alt="color">
+          </div>
+        `).join('')}
 
 	</div>
 
@@ -92,6 +93,13 @@ return outer
 
 };
 
+// получаем название цвета товара
+
+function getColorName(path) {
+	const match = path.match(/\/([^/]+)\.jpg$/);
+	return match ? match[1] : '';
+};
+
 
 export const lightSelection = () => {
 
@@ -106,7 +114,9 @@ export const lightSelection = () => {
 
 		const itemColor = elementParent.querySelectorAll('.product-color__item');
 
-		const imgColor = elementParent.querySelector('img');
+		const imgColor = document.querySelector('.product-color__img');
+
+		console.log(imgColor);
 
 		itemColor.forEach( item => {
 
@@ -123,9 +133,6 @@ export const lightSelection = () => {
 		imgParent.classList.add('product-color__item_on');
 
 		};
-
-
-
 
 		})
 	} )

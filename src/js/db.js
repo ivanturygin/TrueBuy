@@ -4,7 +4,12 @@
 	{
 	id: "1r5",
 
-	img: "../../img/product/4442541.jpg",
+	img:{
+
+		atlantic: ["../img/product/velvet/atlantic1.jpg", "../img/product/velvet/atlantic2.jpg"],
+
+		coral: ["../img/product/velvet/coral1.jpg", "../img/product/velvet/coral2.jpg"]
+	},
 
 	productName: "Диван Velvet",
 
@@ -12,7 +17,9 @@
 
 	oldPrice: "97990 ₽",
 
-	url: "#product/velvet"
+	url: "#product/velvet",
+
+		color: ["../img/color/coral.jpg", "../img/color/atlantic.jpg", "../img/color/grey.jpg", "../img/color/light.jpg"],
 	},
 
 	{
@@ -28,7 +35,10 @@
 
 		sale: "-30%",
 
-		url: "#product/navy"
+		url: "#product/navy",
+
+		color: ["../img/product/velvet/coral.jpg", "../img/product/velvet/atlantic.jpg"],
+
 	},
 
 	{
@@ -42,7 +52,9 @@
 
 		oldPrice: "97990 ₽",
 
-		url: "#product/velvet"
+		url: "#product/velvet",
+
+		color: ["../img/product/velvet/coral.jpg", "../img/product/velvet/atlantic.jpg"],
 	},
 
 	{
@@ -58,7 +70,9 @@
 
 		sale: "-30%",
 
-		url: "#product/emerald"
+		url: "#product/emerald",
+
+		color: ["../img/product/velvet/coral.jpg", "../img/product/velvet/atlantic.jpg"],
 	},
 
 	]

@@ -18,7 +18,8 @@ export const cart = {
 					img = card.querySelector(".slider__img").getAttribute("src"),
 					title = card.querySelector(".card__title").textContent,
 					price = card.querySelector(".card__price-text").textContent,
-					color = card.querySelector('.product-color__item_on').dataset.color;
+					colorName = card.querySelector('.product-color__item_on').dataset.color,
+               color = card.querySelector('.product-color__img').getAttribute('src');
 			
 					console.log(color);
 
@@ -33,7 +34,7 @@ export const cart = {
 
 					pcs: 1,
 
-					color: color
+					colorName: colorName
 				};
 
 
