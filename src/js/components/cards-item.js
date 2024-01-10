@@ -14,7 +14,6 @@ data.forEach(({
 	color,
 }) => {
 
-
 	const component = document.createElement('div');
 	component.classList.add('card__item');
 	component.dataset.id = `${id}`;
@@ -31,19 +30,13 @@ data.forEach(({
 				<div class="slider__nav-item nav-next">
 					<img class="slider__nav-img" src="../../img/icon/slider_nav.png" alt="#"></div>
 			</div>
-			<div class = "slider__inner">
-
-				<div class = "slider__item">
-				<img class="slider__img" src= ${img} alt="диван Velvet">
-				</div>
-
-				<div class="slider__item">
-					<img class="slider__img" src="" alt="диван Velvet">
-				</div>
-
-				<div class="slider__item">
-					<img class="slider__img" src="../../img/product/4442540.jpg" alt="диван Velvet">
-				</div>
+			<div class="slider__inner">
+			
+			${img.coral.map(item =>
+   `<div class="slider__item">
+        <img class="slider__img" src="${item}" alt="диван Velvet">
+    </div>`
+)}
 			</div>
 		</div>
 	</div>
@@ -93,20 +86,30 @@ return outer
 
 };
 
+
 // получаем название цвета товара
 
 function getColorName(path) {
+
 	const match = path.match(/\/([^/]+)\.jpg$/);
+
 	return match ? match[1] : '';
+
 };
 
+// кнопки выбора цвета
 
 export const lightSelection = () => {
 
 	const productColor = document.querySelectorAll('.product-color__item');
 
-	productColor.forEach(item => {
+	productColor.forEach((item, index) => {
 
+   if(index === 0){
+
+		item.classList.add('product-color__item_on');
+
+	};
 
 		item.addEventListener('click', (e) => {
 
@@ -121,8 +124,6 @@ export const lightSelection = () => {
 		item.classList.remove('product-color__item_on');
 
 		});
-
-
 
 		if(imgColor){
 

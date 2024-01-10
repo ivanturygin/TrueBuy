@@ -25,7 +25,13 @@
 	{
 		id: "2e3",
 
-		img: "../../img/product/4340118.jpg",
+			img: {
+
+				atlantic: ["../img/product/velvet/atlantic1.jpg", "../img/product/velvet/atlantic2.jpg"],
+
+				coral: ["../img/product/velvet/coral1.jpg", "../img/product/velvet/coral2.jpg"]
+			},
+
 
 		productName: "Диван Navy Blue",
 
@@ -44,7 +50,13 @@
 	{
 		id: "4s2",
 
-		img: "../../img/product/4442541.jpg",
+			img: {
+
+				atlantic: ["../img/product/velvet/atlantic1.jpg", "../img/product/velvet/atlantic2.jpg"],
+
+				coral: ["../img/product/velvet/coral1.jpg", "../img/product/velvet/coral2.jpg"]
+			},
+
 
 		productName: "Диван Velvet",
 
@@ -60,7 +72,13 @@
 	{
 		id: "3s3",
 
-		img: "../../img/product/4200315.jpg",
+		img: {
+
+			atlantic: ["../img/product/velvet/atlantic1.jpg", "../img/product/velvet/atlantic2.jpg"],
+
+			coral: ["../img/product/velvet/atlantic1.jpg", "../img/product/velvet/atlantic2.jpg"]
+		},
+
 
 		productName: "Кресло Emerald",
 
