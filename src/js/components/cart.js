@@ -34,7 +34,9 @@ export const cart = {
 
 					pcs: 1,
 
-					colorName: colorName
+					colorName: colorName,
+
+					color: color
 				};
 
 
@@ -233,6 +235,7 @@ counter: function(appState){
 			img,
 			title,
 			price,
+			colorName,
 			color
 		}) => {
 
@@ -258,7 +261,7 @@ counter: function(appState){
                		<div class="cart__item-title">${title}</div>
                		<div class="cart__item-saze">Размеры: 220 см x 103 см x 86 см</div>
                		<div class="cart__item-textile">Ткань: <span>Ultra Coral велюр</span></div>
-							<div class="cart__item-textile">Цвет: <span>${color}</span></div>
+							<div class="cart__item-textile">Цвет:<span><img class="color" src="${color}"></span><span>${colorName}</span></div>
 
                		<div class="cart__item-bottom">
                			<div class="caunter">

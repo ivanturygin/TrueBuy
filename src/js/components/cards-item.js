@@ -116,8 +116,6 @@ export const lightSelection = () => {
 
 		const imgColor = document.querySelector('.product-color__img');
 
-		console.log(imgColor);
-
 		itemColor.forEach( item => {
 
 		item.classList.remove('product-color__item_on');
