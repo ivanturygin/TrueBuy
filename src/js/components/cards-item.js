@@ -1,3 +1,4 @@
+import { cardsProduct } from "../db";
 
 export function cardsItem(data){
 
@@ -14,9 +15,12 @@ data.forEach(({
 	color,
 }) => {
 
+
 	const component = document.createElement('div');
 	component.classList.add('card__item');
 	component.dataset.id = `${id}`;
+	
+	let oneElementColor = Object.values(img)[0];
 
 	const content = `<div class="card__image">
 	<div class="slider">
@@ -32,7 +36,7 @@ data.forEach(({
 			</div>
 			<div class="slider__inner">
 			
-			${img.coral.map(item =>
+			${oneElementColor.map(item =>
    `<div class="slider__item">
         <img class="slider__img" src="${item}" alt="диван Velvet">
     </div>`
@@ -54,9 +58,10 @@ data.forEach(({
 <div class="card__content-bottom">
 
 	<div class="product-color"> 
+
 	   ${color.map(colorPath =>`
-          <div class="product-color__item" data-color="${getColorName(colorPath)}">
-            <img class="product-color__img" src="${colorPath}" alt="color">
+          <div class="product-color__item">
+            <img class="product-color__img" src="${colorPath}" data-color="${getColorName(colorPath)}" alt="color">
           </div>
         `).join('')}
 
@@ -99,42 +104,91 @@ function getColorName(path) {
 
 // кнопки выбора цвета
 
-export const lightSelection = () => {
+export const lightSelection = (data) => {
 
-	const productColor = document.querySelectorAll('.product-color__item');
+	const productItem = document.querySelectorAll('.card__item');
 
-	productColor.forEach((item, index) => {
+	productItem.forEach((item) => {
 
-   if(index === 0){
+		const productColor = item.querySelectorAll('.product-color__item');
 
-		item.classList.add('product-color__item_on');
+		// выбираем первый элемент цвета по умолчанию
 
-	};
+		productColor.forEach((item, index) => {
 
-		item.addEventListener('click', (e) => {
+			if (index === 0){
 
-		const elementParent = e.target.closest('.product-color');
-
-		const itemColor = elementParent.querySelectorAll('.product-color__item');
-
-		const imgColor = document.querySelector('.product-color__img');
-
-		itemColor.forEach( item => {
-
-		item.classList.remove('product-color__item_on');
+				item.classList.add('product-color__item_on')
+			};
 
 		});
 
-		if(imgColor){
+		// обработчик события цвета
 
-		const imgParent = e.target.closest('.product-color__item');
+		item.addEventListener('click', (e) => {
 
-		imgParent.classList.add('product-color__item_on');
+
+		if (e.target.hasAttribute('data-color')) {
+
+			const itemColor = item.querySelectorAll('.product-color__item'),
+			      parentColor = e.target.closest('.product-color__item'),
+					sliderItem = item.querySelectorAll('.slider__item'),
+					colorName = e.target.getAttribute('data-color'),
+					id = item.getAttribute('data-id');
+
+			itemColor.forEach(item => {
+
+         item.classList.remove('product-color__item_on');
+
+			});
+
+			parentColor.classList.add('product-color__item_on');
+
+
+   let pathColor = getValuesColor(id, colorName);
+
+	sliderItem.forEach((item, index) => {
+
+		const img = item.querySelector('.slider__img');
+
+
+		if (img) {
+
+			img.setAttribute('src', pathColor[index]);
 
 		};
 
-		})
-	} )
+	});
 
+	
+
+		};
+
+
+		});
+
+	});
 
 }
+
+// получаем путь к изображению товара
+
+function getValuesColor (elementId, color) {
+
+	let colorPath;
+
+	cardsProduct.forEach(({id,img}) => {
+
+			if (id === elementId){
+
+			colorPath =  img[color];
+
+			};
+
+			});
+
+			return colorPath
+
+		};
+		
+

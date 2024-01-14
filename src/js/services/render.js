@@ -83,7 +83,7 @@ export const render = {
 			});
 		}
 
-		lightSelection();
+		lightSelection(cardsProduct);
 
 	appState.handler = cart.addProduct(appState, counterProduct);
 
